@@ -31,6 +31,11 @@
                                     </ul>
                                 </div>
                             @endif
+                            @php
+                                $likeCount = count(\App\Tweet::find($tweets->id)->like);
+                                $dislikeCount = count(\App\Tweet::find($tweets->id)->dislike);
+
+                            @endphp
                             @include('navbarsUser')
                             @endif
 

@@ -11,40 +11,40 @@ use App\User;
 
 class FollowsController extends Controller
 {
+    public function follow($id){
+        // return $id;
+        $loggedInUser = Auth::user()->id;
+        $followUser = \App\Follow::where(['user_id'=>$loggedInUser,'followed'=> $id ]);
+        if(empty($followUser ->user_id )){
+            $user_id = Auth::user()->id;
+            $followed = $id;
+            $follows = new \App\Follow;
+            $follows->user_id = $user_id;
+            $follows->followed = $followed;
+            $follows->save();
+            $follows = \App\Follow::find($id);
+            return redirect('home');
+        }else{
+            return Redirect::back();
 
-    function follow(){
-        if(Auth::check()) {
-            $users = \App\User::all();
-            $follows = \App\Follow::where('user_id', Auth::user()->name)->get();
-            return view('allUsers', ['users' => $users, 'follows' => $follows]);
-        } else {
-            return redirect('/home');
         }
     }
-    // public function follows($username){
 
-    //     // Find the User. Redirect if the User doesn't exist
-    //     $user = User::where('username', $username)->firstOrFail();
+    public function unfollow($id){
+           // return $id;
+           $loggedInUser = Auth::user()->id;
+           $followUser = \App\Follow::where(['user_id'=>$loggedInUser,'followed'=> $id ]);
+           if(empty($followUser ->user_id )){
+               $user_id = Auth::user()->id;
+               $followed = $id;
+               $follow = new \App\Follow;
+               $follow->user_id = $user_id;
+               $follow->followed = $followed;
+               $follow->save();
+               return redirect('home');
+           }else{
+               return Redirect::back();
+           }
 
-    //     // Find logged in User
-    //     $id = Auth::id();
-    //     $me = User::find($id);
-    //     $me->following()->attach($user->id);
-    //     return redirect('/home/user/' . $username);
-
-    //   }
-
-    //   public function unfollows($username){
-
-    //     // Find the User. Redirect if the User doesn't exist
-    //     $user = User::where('username', $username)->firstOrFail();
-
-    //     // Find logged in User
-    //     $id = Auth::id();
-    //     $me = User::find($id);
-    //     $me->following()->detach($user->id);
-    //     return redirect('/home/user/' . $username);
-
-    //   }
-
+    }
 }

@@ -14,12 +14,22 @@
                                         <p>{{$tweets-> content}}</p>
                                         {{-- <p>{{$tweet-> user_id}}</p> --}}
                                         <p><i>Posted on : {{$tweets-> created_at}}</i></p>
+                                        @php
+                                            $likeCount = count(\App\Tweet::find($tweets->id)->like);
+                                            $dislikeCount = count(\App\Tweet::find($tweets->id)->dislike);
+
+                                        @endphp
                                         @include('navbarsUser')
 
                                     @else
                                         <p><strong>{{$tweets-> user->name}}</strong></p>
                                         <p>{{$tweets-> content}}</p>
                                         <p><i>Posted on: {{$tweets-> created_at}}</i></p>
+                                        @php
+                                            $likeCount = count(\App\Tweet::find($tweets->id)->like);
+                                            $dislikeCount = count(\App\Tweet::find($tweets->id)->dislike);
+
+                                        @endphp
                                         @include('navbarsGuest')
                                         <hr>
 

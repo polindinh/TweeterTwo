@@ -34,11 +34,15 @@
                             @if ($tweets-> user_id == Auth::user()->id)
                                 @php
                                     $likeCount = count(\App\Tweet::find($tweets->id)->like);
+                                    $dislikeCount = count(\App\Tweet::find($tweets->id)->dislike);
+
                                 @endphp
                                 @include('navbarsUser')
                             @else
                                 @php
                                     $likeCount = count(\App\Tweet::find($tweets->id)->like);
+                                    $dislikeCount = count(\App\Tweet::find($tweets->id)->dislike);
+
                                  @endphp
                                 @include('navbarsGuest')
 
@@ -52,9 +56,6 @@
                             {{-- @endforeach --}}
                             @if (count($comments)>0)
                                 @foreach ($comments as $comment)
-                                    {{-- @php
-                                        $likeCount = count(\App\Tweet::find($tweets->id)->like);
-                                    @endphp --}}
                                     @if ($comment-> user_id == Auth::user()->id)
                                         <p><strong>{{$comment-> user->name}}</strong></p>
                                         <p>{{$comment-> content}}</p>

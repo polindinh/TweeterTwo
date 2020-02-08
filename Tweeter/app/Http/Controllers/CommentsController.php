@@ -12,14 +12,13 @@ use Illuminate\Support\Facades\Redirect;
 class CommentsController extends Controller
 
 {
-
     function edit(Request $request){
         $tweets = \App\Tweet::find($request->id);
         $comments = \App\Comment::where('tweet_id', '=', $request->id)->orderBy('id', 'DESC')->get();
         return view('comments',['tweets' => $tweets, 'comments'=>$comments]);
     }
     public function commentPost (Request $request){
-        $validateData = $request->validate(['content'=>'required|min:5|max:280']);
+        $validateData = $request->validate(['content'=>'required|min:10|max:280']);
         $comments = new \App\Comment;
         $comments->user_id = Auth::user()->id;
         $comments->tweet_id = $request->tweet_id;
@@ -34,14 +33,13 @@ class CommentsController extends Controller
 
     }
     public function editComment(Request $request){
-        $validateData = $request->validate(['content'=>'required|min:5|max:280']);
+        $validateData = $request->validate(['content'=>'required|min:10|max:280']);
         $comments = \App\Comment::find($request->id);
         $comments->user_id = $request->user_id;
         $comments->content = $request->content;
         $comments->save();
         $result = \App\Comment::all();
         return redirect('/comment/'.$comments->tweet_id)->with('success','Your comment has been updated successfully!');
-
     }
 
     function deleteComment($id){

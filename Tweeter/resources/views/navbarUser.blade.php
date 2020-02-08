@@ -2,32 +2,32 @@
 
     <li class="nav-item">
         <a class="nav-link" href="/view/{{$tweet->id}}">
-            <span class="fa fa-eye"> VIEW</span>
+            <span class="fa fa-eye"> </span> VIEW
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/comment/{{$tweet->id}}">
-            <span class="fas fa-comment"> COMMENT</span>
+            <span class="fas fa-comment"> </span> COMMENT
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/like/{{$tweet->id}}">
-            <span class="fas fa-heart"> Like ({{$likeCount}})</span>
+            <span class="fas fa-heart"> </span> Like ({{$likeCount}})
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/dislike/{{$tweet->id}}">
-            <span class="fas fa-thumbs-down"> Dislike ()</span>
+            <span class="fas fa-thumbs-down"> </span> Dislike ({{$dislikeCount}})
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/edit/{{$tweet->id}}">
-            <span class="fas fa-edit"> EDIT</span>
+            <span class="fas fa-edit"> </span> EDIT
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/delete/{{$tweet->id}}">
-            <span class="fas fa-trash-alt"> DELETE</span>
+            <span class="fas fa-trash-alt"> </span> DELETE
         </a>
     </li>
 

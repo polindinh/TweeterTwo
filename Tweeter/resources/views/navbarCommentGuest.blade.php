@@ -12,12 +12,12 @@
     </li> --}}
     <li class="nav-item">
         <a class="nav-link" href="/like/{{$comment->id}}">
-            <span class="fas fa-heart"> Like ()</span>
+            <span class="fas fa-heart"> </span> Like ()
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/dislike/{{$comment->id}}">
-            <span class="fas fa-thumbs-down"> Dislike ()</span>
+            <span class="fas fa-thumbs-down"> </span> Dislike ()
         </a>
     </li>
 

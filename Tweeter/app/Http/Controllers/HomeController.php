@@ -29,6 +29,8 @@ class HomeController extends Controller
     public function index()
     {
         $tweets = \App\Tweet::orderBy('id', 'DESC')->get();
-        return view('home',['tweets'=>$tweets]);
+        $users = \App\User::all();
+        $follows = \App\User::find(Auth::user()->id)->follow;
+        return view('home',['tweets'=>$tweets,'users'=>$users, 'follows'=>$follows]);
     }
 }

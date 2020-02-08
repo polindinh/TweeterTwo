@@ -14,8 +14,9 @@ use Storage;
 
 class ProfilesController extends Controller
 {
-    public function profile(){
-        return view('profiles.profile', array('user'=> Auth::user()));
+    public function showProfile($id){
+        $profiles = \App\Profile::where('user_id','=',$id)->get();
+        return view('profiles.profile', ['profiles'=> $profiles]);
     }
 
     public function updateProfile(Request $request){

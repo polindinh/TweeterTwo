@@ -21,15 +21,7 @@ class LikesController extends Controller
             $like->tweet_id = $tweet_id;
             $like->save();
             return redirect('home');
-            // $likeCount = \App\Like::where('tweet_id','=', $id)->count();
-            // $result = \App\Tweet::all();
-
-            // return view('home', ['tweets'=>$result])->with('likeCount', $likeCount);
-
-
-            // return redirect('/view/{$id}');
         }else{
-            // return redirect('/view/{$id}');
             return Redirect::back();
 
         }

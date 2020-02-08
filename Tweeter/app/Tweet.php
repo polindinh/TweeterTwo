@@ -18,6 +18,9 @@ class Tweet extends Model
     function like(){
         return $this->hasMany('\App\Like');
     }
+    function dislike(){
+        return $this->hasMany('\App\Dislike');
+    }
 
 
 }

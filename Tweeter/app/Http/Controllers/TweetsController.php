@@ -13,7 +13,7 @@ class TweetsController extends Controller
 {
 
     function addTweet(Request $request){
-        $validateInput = $request->validate(['content'=>'required|min:50|max:280']);
+        $validateInput = $request->validate(['content'=>'required|min:10|max:280']);
         $tweet = new \App\Tweet;
         $tweet->user_id= $request->user_id;
         $tweet->content = $request->content;
@@ -39,7 +39,7 @@ class TweetsController extends Controller
 
     }
     public function editTweet(Request $request){
-        $validateData = $request->validate(['content'=>'required|min:50|max:280']);
+        $validateData = $request->validate(['content'=>'required|min:10|max:280']);
         $tweet = \App\Tweet::find($request->id);
         $tweet->user_id = $request->user_id;
         $tweet->content = $request->content;
