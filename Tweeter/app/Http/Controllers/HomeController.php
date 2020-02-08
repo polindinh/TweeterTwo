@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Profile;
+use App\User;
+use DB;
+use Auth;
+use App\Tweet;
 
 class HomeController extends Controller
 {
@@ -23,6 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $tweets = \App\Tweet::orderBy('id', 'DESC')->get();
+        return view('home',['tweets'=>$tweets]);
     }
 }

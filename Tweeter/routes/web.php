@@ -18,3 +18,40 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Route::post('/home','TweetsController@show' );
+
+
+Route::get('/profile','ProfilesController@profile');
+
+Route::post('/profile','ProfilesController@updateProfile');
+
+// Route::get('/home/addProfile','ProfilesController@profile');
+
+// Route::post('/home/', 'ProfilesController@displayProfile');
+
+// Route::post('/profile', 'ProfilesController@profile');
+
+
+// Route::get('/Profiles', 'UsersController@showAllUsers');
+
+
+Route::post('/tweets/addTweet', 'TweetsController@addTweet');
+Route::get('/view/{id}', 'TweetsController@view');
+Route::get('/edit/{id}', 'TweetsController@edit');
+Route::post('/editTweet/{id}','TweetsController@editTweet');
+Route::get('/delete/{id}','TweetsController@deleteTweet');
+Route::get('/like/{id}','LikesController@like');
+
+Route::get('/comment/{id}','CommentsController@edit')->name('comments');
+Route::post('/commentPost/{id}','CommentsController@commentPost');
+Route::get('viewComment/{id}','CommentsController@view');
+Route::post('editComment/{id}','CommentsController@editComment');
+Route::get('/deleteComment/{id}','CommentsController@deleteComment');
+
+
+
+
+
+
+

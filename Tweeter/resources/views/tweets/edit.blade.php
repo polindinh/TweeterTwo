@@ -1,0 +1,47 @@
+@extends ('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Edit Tweet</div>
+                    <div class="card-body">
+                        <div>
+                            @if ($tweets-> user_id !== Auth::user()->id)
+                            <div class="row justify-content-center">
+                                <p>You can only edit your own tweets</p>
+                            </div>
+                            @else
+                            {{-- <p>{{$tweets-> content}}</p> --}}
+                            <div class="form-group shadow-textarea">
+                                <form action="/editTweet/{{$tweets->id}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value= {{Auth::user()->id}}>
+                                    <textarea class="form-control z-depth-1"  rows="4" cols="93" type="text" name="content">{{$tweets-> content}}</textarea>
+                                    <input class="btn btn-primary" type="submit" name="submit" value="Update" style="margin: 15px 0; float:right">
+                                </form>
+                            </div>
+                            @if($errors->any())
+                                <div>
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li style="color:red">{{$error}}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                            @include('navbarsUser')
+                            @endif
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection
