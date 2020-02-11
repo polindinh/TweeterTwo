@@ -34,10 +34,10 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    {{-- <ul class="navbar-nav mr-auto">
                         <li><a href="/home">Home</a></li>
                         <li><a href="/about">About</a></li>
-                    </ul>
+                    </ul> --}}
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -60,8 +60,15 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/profile"> Profile</a>
-
+                                    {{-- <a class="dropdown-item" href="/profile"> Profile</a> --}}
+                                    <a class="dropdown-item" href="/profile/{{Auth::user()->id}}"
+                                    onclick="event.preventDefault();
+                                                  document.getElementById('profile-form').submit();">
+                                     {{ __('Profile') }}
+                                 </a>
+                                 <form id="profile-form" action="/profile/{{Auth::user()->id}}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

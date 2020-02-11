@@ -10,6 +10,7 @@ use Auth;
 use Image;
 use App\User;
 use Storage;
+use Illuminate\Support\Facades\Redirect;
 
 
 class ProfilesController extends Controller
@@ -19,26 +20,33 @@ class ProfilesController extends Controller
         return view('profiles.profile', ['profiles'=> $profiles]);
     }
 
-    public function updateProfile(Request $request){
+    public function addProfile(Request $request){
             if($request->hasFile('profile_pic')){
-                $profile = $request -> file('profile_pic');
-                $fileName = time(). '.'.$profile->getClientOriginalExtension();
-                $location = public_path('/storage/profile_images'.$fileName);
+                $validateData = $request->validate(['date_of_birth'=>'required',
+                                                    'gender'=>'required',
+                                                    'quote'=>'required',
+                                                    'profile_pic'=>'required|image|max:5000',
 
-                Image::make($profile)->resize(300,300)->save($location);
-                // $oldFile = $profile->profile_pic;
-                $user = Auth::user();
-                $user=  \App\User::find($request->id);
-                $user -> profile_pic = $fileName;
-                // Storage::delete($oldFile);
+                                            ]);
 
-                $user ->save();
+                $profiles = new \App\Profile;
+                $profiles -> name = Auth::user()->name;
+                $profiles -> user_id = Auth::user()->id;
+                $profiles -> date_of_birth = $request->date_of_birth;
+                $profiles -> gender = $request->gender;
+                $profiles -> quote = $request->quote;
+                $profiles -> profile_pic = $request->profile_pic->store('profile_images','public');
+                $profiles -> save();
+                $result = \App\Profile::all();
+
+                return Redirect::route('home', ['profiles'=>$result])->with('success','Your profilke has been created successfully!');
             }
-            return view('profiles.profile', array('user'=> Auth::user()));
-
-
+            return redirect('home');
     }
-
+    public function updateProfile($id){
+        $profiles = \App\Profile::where('user_id','=',$id)->get();
+        return view('profiles.updateprofile', ['profiles'=> $profiles]);
+    }
 
 
 }

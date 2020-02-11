@@ -50,8 +50,10 @@ Route::post('/unfollow/{id}', 'FollowsController@unfollow');
 
 
 Route::get('/profile/{id}','ProfilesController@showProfile');
-Route::get('/profile','ProfilesController@profile');
-Route::post('/profile','ProfilesController@updateProfile');
+Route::post('/profile/{id}','ProfilesController@showProfile');
+Route::post('/addProfile/{id}','ProfilesController@addProfile');
+Route::post('/updateProfile/{id}','ProfilesController@updateProfile');
+
 
 
 
