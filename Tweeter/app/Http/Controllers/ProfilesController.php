@@ -17,7 +17,14 @@ class ProfilesController extends Controller
 {
     public function showProfile($id){
         $profiles = \App\Profile::where('user_id','=',$id)->get();
-        return view('profiles.profile', ['profiles'=> $profiles]);
+        $tweets = \App\Tweet::where('user_id', '=', $id )->get();
+        return view('profiles.profile', ['profiles'=> $profiles,'tweets'=>$tweets]);
+    }
+
+    public function showGuestProfile($id){
+        $profiles = \App\Profile::where('user_id','=',$id)->first();
+        $tweets = \App\Tweet::where('user_id', '=', $id )->get();
+        return view('profiles.allprofiles', ['profiles'=> $profiles,'tweets'=>$tweets]);
     }
 
     public function addProfile(Request $request){
@@ -43,10 +50,54 @@ class ProfilesController extends Controller
             }
             return redirect('home');
     }
-    public function updateProfile($id){
-        $profiles = \App\Profile::where('user_id','=',$id)->get();
+    public function updateForm($id){
+        $profiles = \App\Profile::where('id','=',$id)->get();
         return view('profiles.updateprofile', ['profiles'=> $profiles]);
     }
 
+    public function updateProfile(Request $request){
+        if($request->hasFile('profile_pic')){
+            $validateData = $request->validate(['date_of_birth'=>'required',
+                                                'gender'=>'required',
+                                                'quote'=>'required',
+                                                'profile_pic'=>'image|max:5000',
+                                        ]);
+
+        $profiles = \App\Profile::find($request->id);
+        $profiles -> user_id = $request->user_id;
+        $profiles -> date_of_birth = $request->date_of_birth;
+        $profiles -> gender = $request->gender;
+        $profiles -> quote = $request->quote;
+        $profiles -> profile_pic = $request->profile_pic->store('profile_images','public');
+        $profiles -> save();
+        // $result = \App\Profile::where('id','=',$id)->get();
+        return Redirect::route('home')->with('success','Your profilke has been created successfully!');
+        // return view('profiles.updateprofile', ['profiles'=> $profiles]);
+
+        }else{
+            $validateData = $request->validate(['date_of_birth'=>'required',
+                                                'gender'=>'required',
+                                                'quote'=>'required',
+                                                // 'profile_pic'=>'image|max:5000',
+                                        ]);
+
+        $profiles = \App\Profile::find($request->id);
+        $profiles -> user_id = $request->user_id;
+        $profiles -> date_of_birth = $request->date_of_birth;
+        $profiles -> gender = $request->gender;
+        $profiles -> quote = $request->quote;
+        // $profiles -> profile_pic = $request->profile_pic->store('profile_images','public');
+        $profiles -> save();
+        // $result = \App\Profile::all();
+        return Redirect::route('home')->with('success','Your profile has been created successfully!');
+
+        }
+
+    }
+    public function deleteProfile(Request $request){
+        \App\Profile::destroy($request->id);
+        $result = \App\Profile::all();
+        return Redirect::route('home', ['profiles'=>$result])->with('success','Your profile has been deleted successfully!');
+    }
 
 }

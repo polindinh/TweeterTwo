@@ -10,16 +10,16 @@
             <span class="fas fa-comment"> COMMENT</span>
         </a>
     </li> --}}
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="/like/{{$comment->id}}">
             <span class="fas fa-heart"> </span> Like ()
         </a>
-    </li>
-    <li class="nav-item">
+    </li> --}}
+    {{-- <li class="nav-item">
         <a class="nav-link" href="/dislike/{{$comment->id}}">
             <span class="fas fa-thumbs-down"> </span> Dislike ()
         </a>
-    </li>
+    </li> --}}
     <li class="nav-item">
         <a class="nav-link" href="/viewComment/{{$comment->id}}">
             <span class="fas fa-edit"> </span> UPDATE

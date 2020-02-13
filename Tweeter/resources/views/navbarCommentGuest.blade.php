@@ -1,4 +1,4 @@
-<ul class="nav">
+{{-- <ul class="nav">
 
     {{-- <li class="nav-item">
         <a class="nav-link" href="/view/{{$comment->id}}">
@@ -10,15 +10,15 @@
             <span class="fas fa-comment"> COMMENT</span>
         </a>
     </li> --}}
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="/like/{{$comment->id}}">
             <span class="fas fa-heart"> </span> Like ()
         </a>
-    </li>
-    <li class="nav-item">
+    </li> --}}
+    {{-- <li class="nav-item">
         <a class="nav-link" href="/dislike/{{$comment->id}}">
             <span class="fas fa-thumbs-down"> </span> Dislike ()
         </a>
     </li>
 
-</ul>
+</ul> --}}

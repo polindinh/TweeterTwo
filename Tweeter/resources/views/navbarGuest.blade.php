@@ -15,10 +15,10 @@
             <span class="fas fa-heart"> </span> Like ({{$likeCount}})
         </a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link" href="/dislike/{{$tweet->id}}">
             <span class="fas fa-thumbs-down"> </span> Dislike ({{$dislikeCount}})
         </a>
-    </li>
+    </li> --}}
 
 </ul>

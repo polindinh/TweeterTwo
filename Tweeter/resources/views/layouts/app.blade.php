@@ -23,9 +23,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ps">
+
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/home') }}">
                     TWEETER
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -52,6 +53,12 @@
                                 </li>
                             @endif
                         @else
+                            <form action="{{route('search')}}" method="POST" class="navbar-nav ml-auto">
+                                @csrf
+                                <input type="text" name="search" class="form-control" placeholder="search...">
+                                <button class="btn btn-primary" type="submit">Submit</button>
+
+                            </form>
 
                             <li class="nav-item dropdown">
 
@@ -85,7 +92,9 @@
                     </ul>
                 </div>
             </div>
+
         </nav>
+
 
         <main class="py-4">
             @yield('content')
