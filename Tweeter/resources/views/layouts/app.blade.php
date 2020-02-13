@@ -34,6 +34,11 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    {{-- <form action="/users" method="get" class="navbar-nav ml-auto"> --}}
+                        {{-- @csrf --}}
+                        <a href="/users"  type="submit">Find Users</a>
+                    {{-- </form> --}}
                     <!-- Left Side Of Navbar -->
                     {{-- <ul class="navbar-nav mr-auto">
                         <li><a href="/home">Home</a></li>
@@ -59,6 +64,7 @@
                                 <button class="btn btn-primary" type="submit">Submit</button>
 
                             </form>
+
 
                             <li class="nav-item dropdown">
 

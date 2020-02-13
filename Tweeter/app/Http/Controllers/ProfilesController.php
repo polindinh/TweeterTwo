@@ -31,7 +31,7 @@ class ProfilesController extends Controller
             if($request->hasFile('profile_pic')){
                 $validateData = $request->validate(['date_of_birth'=>'required',
                                                     'gender'=>'required',
-                                                    'quote'=>'required',
+                                                    'quote'=>'required|max:100',
                                                     'profile_pic'=>'required|image|max:5000',
 
                                             ]);
@@ -46,7 +46,7 @@ class ProfilesController extends Controller
                 $profiles -> save();
                 $result = \App\Profile::all();
 
-                return Redirect::route('home', ['profiles'=>$result])->with('success','Your profilke has been created successfully!');
+                return Redirect::route('home', ['profiles'=>$result])->with('success','Your profile has been created successfully!');
             }
             return redirect('home');
     }
@@ -59,7 +59,7 @@ class ProfilesController extends Controller
         if($request->hasFile('profile_pic')){
             $validateData = $request->validate(['date_of_birth'=>'required',
                                                 'gender'=>'required',
-                                                'quote'=>'required',
+                                                'quote'=>'required|max:100',
                                                 'profile_pic'=>'image|max:5000',
                                         ]);
 
@@ -71,13 +71,13 @@ class ProfilesController extends Controller
         $profiles -> profile_pic = $request->profile_pic->store('profile_images','public');
         $profiles -> save();
         // $result = \App\Profile::where('id','=',$id)->get();
-        return Redirect::route('home')->with('success','Your profilke has been created successfully!');
+        return Redirect::route('home')->with('success','Your profile has been created successfully!');
         // return view('profiles.updateprofile', ['profiles'=> $profiles]);
 
         }else{
             $validateData = $request->validate(['date_of_birth'=>'required',
                                                 'gender'=>'required',
-                                                'quote'=>'required',
+                                                'quote'=>'required|max:100',
                                                 // 'profile_pic'=>'image|max:5000',
                                         ]);
 

@@ -22,15 +22,14 @@
                                                 <a href="/profile/{{$allUser->id}}" class="btn btn-primary btn-block">Show Profile</a>
                                                 </div>
                                             </div>
-                                            <?php
+                                            @php
                                                 $notFollowing = App\Follow::where('followed','=',$allUser->id)->first();
-                                                if(is_null($notFollowing)){
-                                            ?>
+                                            @endphp
+                                              @if(is_null($notFollowing))
                                                 <a href="{{route('following',$allUser->id)}}" class="btn btn-success">Follow</a>
-                                            <?php
-                                                }else {?>
-                                                    <a href="{{route('unfollow',$allUser->id)}}" class="btn btn-success">Unfollow</a>
-                                               <?php } ?>
+                                            @else
+                                                <a href="{{route('unfollow',$allUser->id)}}" class="btn btn-success">Unfollow</a>
+                                            @endif
                                     </div>
                                 </div>
 

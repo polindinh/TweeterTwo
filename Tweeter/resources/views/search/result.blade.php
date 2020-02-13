@@ -27,10 +27,13 @@
                                             $notFollowing = App\Follow::where('followed','=',$searchUser->id)->first();
                                             if(is_null($notFollowing)){
                                         ?>
-                                            <a href="{{route('following',$searchUser->id)}}" class="btn btn-success">Follow</a>
+                                            <a href="{{route('sfollowing',$searchUser->id)}}" class="btn btn-success">Follow</a>
+                                            {{-- <a href="/following/{{$searchUser->id}}" class="btn btn-success">Follow</a> --}}
                                         <?php
                                             }else {?>
-                                                <a href="{{route('unfollow',$searchUser->id)}}" class="btn btn-success">Unfollow</a>
+                                                <a href="{{route('sunfollow',$searchUser->id)}}" class="btn btn-success">Unfollow</a>
+                                                {{-- <a href="/unfollow/{{$searchUser->id}}" class="btn btn-success">Unfollow</a> --}}
+
                                            <?php } ?>
                                     </div>
                                 </div>

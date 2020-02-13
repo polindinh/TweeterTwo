@@ -50,8 +50,8 @@ Route::get('/users','FollowsController@allUsers');
 Route::get('/following/{id}','FollowsController@following')->name('following');
 Route::get('/unfollow/{id}','FollowsController@unfollow')->name('unfollow');
 
-// Route::post('/sfollowing/{id}','FollowsController@following')->name('sfollowing');
-// Route::post('/sunfollow/{id}','FollowsController@unfollow')->name('sunfollow');
+Route::get('/sfollowing/{id}','FollowsController@sfollowing')->name('sfollowing');
+Route::get('/sunfollow/{id}','FollowsController@sunfollow')->name('sunfollow');
 
 
 

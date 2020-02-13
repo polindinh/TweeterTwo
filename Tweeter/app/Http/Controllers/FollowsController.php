@@ -29,6 +29,19 @@ class FollowsController extends Controller
                     ->delete();
         return back();
     }
+    public function sfollowing($id){
+        $follow = new Follow;
+        $follow->user_id = Auth::user()->id;
+        $follow->followed = $id;
+        $follow->save();
+        return back();
+    }
+    public function sunfollow($id){
+        Follow::where('user_id', Auth::user()->id)
+                    ->where('followed', $id)
+                    ->delete();
+        return back();
+    }
 
 
     // public function follow($id){

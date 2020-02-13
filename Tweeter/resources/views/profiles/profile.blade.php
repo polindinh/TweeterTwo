@@ -21,20 +21,15 @@
                                     {{$profile->quote}}<br>
                                     <p>Member since: {{$profile->created_at}}</p>
                                 </div>
+
                                 <div>
-                                    <ul class="nav">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/following">
-                                                <span> </span> Following ()
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/follower">
-                                                <span> </span> Follower ()
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                    @php
+                                        $followingCount = count(\App\Follow::where('user_id','=', $profile->user_id)->get());
+                                        $followersCount = count(\App\Follow::where('followed','=', $profile->user_id)->get());
+
+                                    @endphp
+                                        <span>Following ({{$followingCount}}) </span>
+                                        <span>Follower ({{$followersCount}}) </span>
                                 <br>
 
                                 <form action="/updateProfileForm/{{$profile->id}}" method="POST" style="display:inline-block">

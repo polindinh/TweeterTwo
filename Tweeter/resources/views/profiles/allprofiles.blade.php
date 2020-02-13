@@ -16,25 +16,20 @@
                                             <br>
                                             <h2>{{$profiles->name}}</h2>
                                             {{$profiles->gender}} <br>
-                                            {{$profiles->id}} <br>
+                                            {{-- {{$profiles->id}} <br> --}}
 
                                             {{$profiles->date_of_birth}}<br>
                                             {{$profiles->quote}}<br>
                                             <p>Member since: {{$profiles->created_at}}</p>
                                         </div>
                                         <div>
-                                            <ul class="nav">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="/following">
-                                                        <span> </span> Following ()
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="/follower">
-                                                        <span > </span> Follower ()
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            @php
+                                                $followingCount = count(\App\Follow::where('user_id','=', $profiles->user_id)->get());
+                                                $followersCount = count(\App\Follow::where('followed','=', $profiles->user_id)->get());
+                                            @endphp
+                                                <span>Following ({{$followingCount}}) </span>
+                                                <span>Follower ({{$followersCount}}) </span>
+
 
                                         </div>
                                         <form action="/updateProfileForm/{{$profiles->id}}" method="POST">
@@ -56,18 +51,23 @@
                                             {{$profiles->date_of_birth}}<br>
                                             {{$profiles->quote}}<br>
                                             <p>Member since: {{$profiles->created_at}}</p>
-                                            <ul class="nav">
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="/like">
-                                                        <span > </span> Following ()
-                                                    </a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="/dislike">
-                                                        <span > </span> Follower ()
-                                                    </a>
-                                                </li>
-                                            </ul>
+
+
+                                            @php
+                                                $followingCount = count(\App\Follow::where('user_id','=', $profiles->user_id)->get());
+                                                $followersCount = count(\App\Follow::where('followed','=', $profiles->user_id)->get());
+                                            @endphp
+                                                 <span>Following ({{$followingCount}}) </span>
+                                                 <span>Follower ({{$followersCount}}) </span>
+                                                 <br>
+                                            @php
+                                                 $notFollowing = App\Follow::where('followed','=',$profiles->id)->first();
+                                             @endphp
+                                               @if(is_null($notFollowing))
+                                                 <a href="{{route('following',$profiles->id)}}" class="btn btn-success">Follow</a>
+                                             @else
+                                                 <a href="{{route('unfollow',$profiles->id)}}" class="btn btn-success">Unfollow</a>
+                                             @endif
 
                                         </div>
                                     @endif
