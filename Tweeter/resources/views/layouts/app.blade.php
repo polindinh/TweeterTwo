@@ -61,7 +61,7 @@
                             <form action="{{route('search')}}" method="POST" class="navbar-nav ml-auto">
                                 @csrf
                                 <input type="text" name="search" class="form-control" placeholder="search...">
-                                <button class="btn btn-primary" type="submit">Submit</button>
+                                <button class="btn btn-primary" type="submit">Go</button>
 
                             </form>
 

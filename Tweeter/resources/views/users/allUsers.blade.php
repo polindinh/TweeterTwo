@@ -18,18 +18,43 @@
                                                 <span>
                                                     <h4 class="card-title" style="margin-bottom:0;"><b>{{$allUser->name}}</b></h4>
                                                 </span>
+                                                <br>
+                                                <div>
+                                                    @php
+                                                        $notFollowing = App\Follow::where('followed','=',$allUser->id)->first();
+                                                    @endphp
+                                                    @if(is_null($notFollowing))
+                                                        <a href="{{route('following',$allUser->id)}}" class="btn btn-success">Follow</a>
+                                                    @else
+                                                        <a href="{{route('unfollow',$allUser->id)}}" class="btn btn-success">Unfollow</a>
+                                                    @endif
+                                                    <br><br>
+                                                </div>
                                                 <div class="button-lg">
                                                 <a href="/profile/{{$allUser->id}}" class="btn btn-primary btn-block">Show Profile</a>
                                                 </div>
+
                                             </div>
-                                            @php
+                                            <hr>
+                                            {{-- @php
+                                            function checkFollow($userToCheck, $follows) {
+                                                foreach ($follows as $follow) {
+                                                    if($follow->followed == $userToCheck) {
+                                                        return true;
+                                                    }
+                                                }
+                                                return false;
+                                            }
+
+                                            @endphp --}}
+                                            {{-- @php
                                                 $notFollowing = App\Follow::where('followed','=',$allUser->id)->first();
                                             @endphp
                                               @if(is_null($notFollowing))
                                                 <a href="{{route('following',$allUser->id)}}" class="btn btn-success">Follow</a>
                                             @else
                                                 <a href="{{route('unfollow',$allUser->id)}}" class="btn btn-success">Unfollow</a>
-                                            @endif
+                                            @endif --}}
                                     </div>
                                 </div>
 

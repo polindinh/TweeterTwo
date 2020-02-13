@@ -19,22 +19,25 @@
                                                 <span>
                                                     <h4 class="card-title" style="margin-bottom:0;"><b>{{$searchUser->name}}</b></h4>
                                                 </span>
+                                                <br>
+                                                <div>@php
+                                                    $notFollowing = App\Follow::where('followed','=',$searchUser->id)->first();
+                                                    @endphp
+                                                    @if(is_null($notFollowing))
+                                                    <a href="{{route('sfollowing',$searchUser->id)}}" class="btn btn-success">Follow</a>
+                                                    {{-- <a href="/following/{{$searchUser->id}}" class="btn btn-success">Follow</a> --}}
+                                                    @else
+                                                        <a href="{{route('sunfollow',$searchUser->id)}}" class="btn btn-success">Unfollow</a>
+                                                        {{-- <a href="/unfollow/{{$searchUser->id}}" class="btn btn-success">Unfollow</a> --}}
+                                                    @endif
+                                                    <br><br>
+                                                </div>
                                                 <div class="button-lg">
                                                 <a href="/profile/{{$searchUser->id}}" class="btn btn-primary btn-block">Show Profile</a>
                                                 </div>
                                             </div>
-                                            <?php
-                                            $notFollowing = App\Follow::where('followed','=',$searchUser->id)->first();
-                                            if(is_null($notFollowing)){
-                                        ?>
-                                            <a href="{{route('sfollowing',$searchUser->id)}}" class="btn btn-success">Follow</a>
-                                            {{-- <a href="/following/{{$searchUser->id}}" class="btn btn-success">Follow</a> --}}
-                                        <?php
-                                            }else {?>
-                                                <a href="{{route('sunfollow',$searchUser->id)}}" class="btn btn-success">Unfollow</a>
-                                                {{-- <a href="/unfollow/{{$searchUser->id}}" class="btn btn-success">Unfollow</a> --}}
+                                            <hr>
 
-                                           <?php } ?>
                                     </div>
                                 </div>
 
