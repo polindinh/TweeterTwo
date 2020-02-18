@@ -2,6 +2,7 @@
 
 @section('content')
 
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -14,6 +15,17 @@
                                 <p>You are not authorized to access this page. Please login or register</p>
                             </div>
                         @else
+                        @php
+                        function checkLike($tweetToCheck, $users){
+                            foreach ($users as $user) {
+                            if($user->tweet_id == $tweetToCheck) {
+                            return true;
+                            }
+                        }
+                            return false;
+                        }
+                        @endphp
+
                             <h3>Welcome {{Auth::user()->name}}</h3>
                             <hr>
                             <div class="form-group shadow-textarea">
@@ -41,23 +53,60 @@
                                         $likeCount = count(\App\Tweet::find($tweet->id)->like);
                                         // $dislikeCount = count(\App\Tweet::find($tweet->id)->dislike);
 
+
                                     @endphp
                                     @if ($tweet-> user_id == Auth::user()->id)
                                     <a href="/profile/{{$tweet->user->id}}"><p><strong>{{$tweet-> user->name}}</strong></p></a>
                                     <p>{{substr($tweet-> content,0,150)}}</p>
-                                        <p><i>Posted on: {{$tweet-> created_at}}</i></p>
-                                        <p><i>Updated on: {{$tweet-> updated_at}}</i></p>
+                                        <p class = "time"><i>Posted: {{$tweet-> created_at->diffForHumans()}}</i></p>
+                                        <p class = "time"><i>Updated: {{$tweet-> updated_at->diffForHumans()}}</i></p>
 
                                         @include('navbarUser')
+
+                                        @if (checkLike($tweet->id, Auth::user()->like))
+                                                {{-- <p>Already Following</p> --}}
+                                            <form action="/unlike/{{$tweet->id}}" method="post">
+                                                @csrf
+                                            <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
+                                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                            </form>
+                                            @else
+                                                <form action="/like/{{$tweet->id}}" method="post">
+                                                    @csrf
+                                                    <input class="btn btn-success"type="submit" value="Like">
+                                                    <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
+
+                                                </form>
+                                            @endif
+
+
                                         <br>
                                         <hr>
                                     @else
                                         <a href="/profile/{{$tweet->user->id}}"><p><strong>{{$tweet-> user->name}}</strong></p></a>
                                         <p>{{substr($tweet-> content,0,150)}}</p>
-                                        <p><i>Posted on: {{$tweet-> created_at}}</i></p>
-                                        <p><i>Updated on: {{$tweet-> updated_at}}</i></p>
+                                        <p class = "time"><i>Posted: {{$tweet-> created_at->diffForHumans()}}</i></p>
+                                        <p class = "time"><i>Updated: {{$tweet-> updated_at->diffForHumans()}}</i></p>
 
                                         @include('navbarGuest')
+                                        @if (checkLike($tweet->id, Auth::user()->like))
+                                        {{-- <p>Already Following</p> --}}
+                                    <form action="/unlike/{{$tweet->id}}" method="post">
+                                        @csrf
+                                    <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
+                                        <input class="btn btn-warning" type="submit" value="Unlike">
+                                    </form>
+                                    @else
+                                        <form action="/like/{{$tweet->id}}" method="post">
+                                            @csrf
+                                            <input class="btn btn-success"type="submit" value="Like">
+                                            <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
+
+                                        </form>
+                                    @endif
+
+
+
                                         <hr>
                                     @endif
                                 @endforeach
@@ -74,6 +123,7 @@
         </div>
     </div>
 </div>
+
 @endsection
 
 

@@ -8,9 +8,21 @@
                 <div class="card-header">Comment Tweet</div>
                     <div class="card-body">
                         @include('flashMessage')
+                        @php
+                        function checkLike($tweetToCheck, $users){
+                            foreach ($users as $user) {
+                            if($user->tweet_id == $tweetToCheck) {
+                            return true;
+                            }
+                        }
+                            return false;
+                        }
+                        @endphp
                         <div>
                             {{-- @foreach ($tweets as $tweet) --}}
-                            <strong><p>{{$tweets-> user ->name}}</p></strong>
+                            <a href="/profile/{{$tweets->user->id}}"><p><strong>{{$tweets-> user->name}}</strong></p></a>
+
+                            {{-- <strong><p>{{$tweets-> user ->name}}</p></strong> --}}
                             <p>{{$tweets-> content}}</p>
                             <div class="form-group shadow-textarea">
                                 <form action="/commentPost/{{$tweets->id}}" method="post">
@@ -38,6 +50,21 @@
 
                                 @endphp
                                 @include('navbarsUser')
+                                @if (checkLike($tweets->id, Auth::user()->like))
+                                {{-- <p>Already Following</p> --}}
+                            <form action="/unlike/{{$tweets->id}}" method="post">
+                                @csrf
+                            <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
+                                <input class="btn btn-warning" type="submit" value="Unlike">
+                            </form>
+                            @else
+                                <form action="/like/{{$tweets->id}}" method="post">
+                                    @csrf
+                                    <input class="btn btn-success"type="submit" value="Like">
+                                    <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
+
+                                </form>
+                            @endif
                             @else
                                 @php
                                     $likeCount = count(\App\Tweet::find($tweets->id)->like);
@@ -45,6 +72,21 @@
 
                                  @endphp
                                 @include('navbarsGuest')
+                                @if (checkLike($tweet->id, Auth::user()->like))
+                                {{-- <p>Already Following</p> --}}
+                            <form action="/unlike/{{$tweets->id}}" method="post">
+                                @csrf
+                            <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
+                                <input class="btn btn-warning" type="submit" value="Unlike">
+                            </form>
+                            @else
+                                <form action="/like/{{$tweets->id}}" method="post">
+                                    @csrf
+                                    <input class="btn btn-success"type="submit" value="Like">
+                                    <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
+
+                                </form>
+                            @endif
 
                             @endif
                             <hr>
@@ -57,7 +99,9 @@
                             @if (count($comments)>0)
                                 @foreach ($comments as $comment)
                                     @if ($comment-> user_id == Auth::user()->id)
-                                        <p><strong>{{$comment-> user->name}}</strong></p>
+                                        <a href="/profile/{{$comment->user->id}}"><p><strong>{{$comment-> user->name}}</strong></p></a>
+
+                                        {{-- <p><strong>{{$comment-> user->name}}</strong></p> --}}
                                         <p>{{$comment-> content}}</p>
                                         {{-- <p>{{$comment-> id}}</p> --}}
 

@@ -8,27 +8,48 @@
                 <div class="card-header">Profile</div>
                     <div class="card-body">
                         @include('flashMessage')
+                        @php
+                            function checkFollowing($userToCheck, $users) {
+                            foreach ($users as $user) {
+                                if($user->followed == $userToCheck) {
+                                return true;
+                                }
+                            }
+                                return false;
+                            }
+                            function checkLike($tweetToCheck, $users){
+                            foreach ($users as $user) {
+                            if($user->tweet_id == $tweetToCheck) {
+                            return true;
+                            }
+                        }
+                            return false;
+                        }
+                        @endphp
                         @isset($profiles)
                                 @if ( Auth::user()->id == $profiles->user_id )
                                         <div>
-                                            <img class="profileImage" src="{{asset('/storage/'.$profiles->profile_pic)}}" style="border-radius:50%" alt="Image">
+                                            <img class="profileImage" src="{{asset('/storage/'.$profiles->profile_pic)}}" style="border-radius:50%; width:150px; height:150px;" alt="Image">
                                             <br>
                                             <br>
                                             <h2>{{$profiles->name}}</h2>
-                                            {{$profiles->gender}} <br>
-                                            {{-- {{$profiles->id}} <br> --}}
+                                            <b>Gender :</b> {{$profiles->gender}} <br>
+                                            <b>Date of Birth : </b>{{$profiles->date_of_birth}}<br>
+                                            <b>Inspiring Quote : </b>{{$profiles->quote}}<br>
+                                            <b>Member Since :</b> {{$profiles->created_at}}
 
-                                            {{$profiles->date_of_birth}}<br>
-                                            {{$profiles->quote}}<br>
-                                            <p>Member since: {{$profiles->created_at}}</p>
                                         </div>
                                         <div>
                                             @php
                                                 $followingCount = count(\App\Follow::where('user_id','=', $profiles->user_id)->get());
                                                 $followersCount = count(\App\Follow::where('followed','=', $profiles->user_id)->get());
                                             @endphp
-                                                <span>Following ({{$followingCount}}) </span>
-                                                <span>Follower ({{$followersCount}}) </span>
+                                            <hr>
+                                            <div>
+                                                <span style="color:#1DA1F2">Following ({{$followingCount}}) </span>
+                                                <span style="color:#1DA1F2">Follower ({{$followersCount}}) </span>
+                                            </div>
+                                            <br>
 
 
                                         </div>
@@ -42,32 +63,42 @@
                                         </form>
                                     @else
                                         <div>
-                                            <img class="profileImage" src="{{asset('/storage/'.$profiles->profile_pic)}}" style="border-radius:50%" alt="Image">
+                                            <img class="profileImage" src="{{asset('/storage/'.$profiles->profile_pic)}}" style="border-radius:50%; width:150px; height:150px;" alt="Image">
                                             <br>
                                             <br>
                                             <h2>{{$profiles->name}}</h2>
                                             {{-- {{$profiles->id}} <br> --}}
-                                            {{$profiles->gender}} <br>
-                                            {{$profiles->date_of_birth}}<br>
-                                            {{$profiles->quote}}<br>
-                                            <p>Member since: {{$profiles->created_at}}</p>
+                                            <b>Gender :</b> {{$profiles->gender}} <br>
+                                            <b>Date of Birth : </b>{{$profiles->date_of_birth}}<br>
+                                            <b>Inspiring Quote : </b>{{$profiles->quote}}<br>
+                                            <b>Member Since :</b> {{$profiles->created_at}}
 
 
                                             @php
                                                 $followingCount = count(\App\Follow::where('user_id','=', $profiles->user_id)->get());
                                                 $followersCount = count(\App\Follow::where('followed','=', $profiles->user_id)->get());
                                             @endphp
-                                                 <span>Following ({{$followingCount}}) </span>
-                                                 <span>Follower ({{$followersCount}}) </span>
+                                                <hr>
+                                                <div>
+                                                 <span style="color:#1DA1F2">Following ({{$followingCount}}) </span>
+                                                 <span style="color:#1DA1F2">Follower ({{$followersCount}}) </span>
+                                                </div>
                                                  <br>
-                                            @php
-                                                 $notFollowing = App\Follow::where('followed','=',$profiles->id)->first();
-                                             @endphp
-                                               @if(is_null($notFollowing))
-                                                 <a href="{{route('following',$profiles->id)}}" class="btn btn-success">Follow</a>
-                                             @else
-                                                 <a href="{{route('unfollow',$profiles->id)}}" class="btn btn-success">Unfollow</a>
-                                             @endif
+
+                                                @if (checkFollowing($users->id, Auth::user()->follow))
+                                                    {{-- <p>Already Following</p> --}}
+                                                <form action="/unfollow/{{$users->id}}" method="post">
+                                                    @csrf
+                                                <input type="hidden" name="user_id" value = "{{$users->id}}">
+                                                    <input class="btn btn-warning" type="submit" value="Unfollow">
+                                                </form>
+                                                @else
+                                                    <form action="/following/{{$users->id}}" method="post">
+                                                        @csrf
+                                                        <input class="btn btn-success"type="submit" value="Follow">
+                                                        <input type="hidden" name="followed" value = "{{$users->id}}">
+                                                    </form>
+                                                @endif
 
                                         </div>
                                     @endif
@@ -88,19 +119,49 @@
                                     @if ($tweet-> user_id == Auth::user()->id)
                                     <a href="/profile/{{$tweet->user->id}}"><p><strong>{{$tweet-> user->name}}</strong></p></a>
                                     <p>{{substr($tweet-> content,0,150)}}</p>
-                                        <p><i>Posted on: {{$tweet-> created_at}}</i></p>
-                                        <p><i>Updated on: {{$tweet-> updated_at}}</i></p>
+                                        <p class = "time"><i>Posted: {{$tweet-> created_at->diffForHumans()}}</i></p>
+                                        <p class = "time"><i>Updated: {{$tweet-> updated_at->diffForHumans()}}</i></p>
 
                                         @include('navbarUser')
+                                        @if (checkLike($tweet->id, Auth::user()->like))
+                                                {{-- <p>Already Following</p> --}}
+                                            <form action="/unlike/{{$tweet->id}}" method="post">
+                                                @csrf
+                                            <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
+                                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                            </form>
+                                            @else
+                                                <form action="/like/{{$tweet->id}}" method="post">
+                                                    @csrf
+                                                    <input class="btn btn-success"type="submit" value="Like">
+                                                    <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
+
+                                                </form>
+                                            @endif
                                         <br>
                                         <hr>
                                     @else
                                         <a href="/profile/{{$tweet->user->id}}"><p><strong>{{$tweet-> user->name}}</strong></p></a>
                                         <p>{{substr($tweet-> content,0,150)}}</p>
-                                        <p><i>Posted on: {{$tweet-> created_at}}</i></p>
-                                        <p><i>Updated on: {{$tweet-> updated_at}}</i></p>
+                                        <p class = "time"><i>Posted: {{$tweet-> created_at->diffForHumans()}}</i></p>
+                                        <p class = "time"><i>Updated: {{$tweet-> updated_at->diffForHumans()}}</i></p>
 
                                         @include('navbarGuest')
+                                        @if (checkLike($tweet->id, Auth::user()->like))
+                                                {{-- <p>Already Following</p> --}}
+                                            <form action="/unlike/{{$tweet->id}}" method="post">
+                                                @csrf
+                                            <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
+                                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                            </form>
+                                            @else
+                                                <form action="/like/{{$tweet->id}}" method="post">
+                                                    @csrf
+                                                    <input class="btn btn-success"type="submit" value="Like">
+                                                    <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
+
+                                                </form>
+                                            @endif
                                         <hr>
                                     @endif
                                 @endforeach

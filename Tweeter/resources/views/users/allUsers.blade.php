@@ -7,59 +7,55 @@
             <div class="card">
                 <div class="card-header"><h4>All Users</h4></div>
                     <div class="card-body">
-                            @foreach ($allUsers as $allUser)
-                                <div class="col-md-4">
-                                    <div class="box-card">
-                                        {{-- <img src="{{asset('/storage/'.$profile->profile_pic)}}" alt="Image"> --}}
-                                            <div class="card-footer">
-                                                <div class="profile-result">
-                                                    {{-- <img src="{{asset('/storage/'.$profile->profile_pic)}}" height="51px;"alt="Image"> --}}
-                                                </div>
-                                                <span>
-                                                    <h4 class="card-title" style="margin-bottom:0;"><b>{{$allUser->name}}</b></h4>
-                                                </span>
-                                                <br>
-                                                <div>
-                                                    @php
-                                                        $notFollowing = App\Follow::where('followed','=',$allUser->id)->first();
-                                                    @endphp
-                                                    @if(is_null($notFollowing))
-                                                        <a href="{{route('following',$allUser->id)}}" class="btn btn-success">Follow</a>
-                                                    @else
-                                                        <a href="{{route('unfollow',$allUser->id)}}" class="btn btn-success">Unfollow</a>
-                                                    @endif
-                                                    <br><br>
-                                                </div>
-                                                <div class="button-lg">
-                                                <a href="/profile/{{$allUser->id}}" class="btn btn-primary btn-block">Show Profile</a>
-                                                </div>
-
-                                            </div>
-                                            <hr>
-                                            {{-- @php
-                                            function checkFollow($userToCheck, $follows) {
-                                                foreach ($follows as $follow) {
-                                                    if($follow->followed == $userToCheck) {
-                                                        return true;
-                                                    }
-                                                }
-                                                return false;
-                                            }
-
-                                            @endphp --}}
-                                            {{-- @php
-                                                $notFollowing = App\Follow::where('followed','=',$allUser->id)->first();
-                                            @endphp
-                                              @if(is_null($notFollowing))
-                                                <a href="{{route('following',$allUser->id)}}" class="btn btn-success">Follow</a>
+                        @php
+                            function checkFollowing($userToCheck, $allUsers) {
+                            foreach ($allUsers as $allUser) {
+                                if($allUser->followed == $userToCheck) {
+                                return true;
+                                }
+                            }
+                                return false;
+                            }
+                           
+                        @endphp
+                        @foreach ($allUsers as $allUser)
+                            <div class="col-md-4">
+                                <div class="box-card">
+                                {{-- <img src="{{asset('/storage/'.$profile->profile_pic)}}" alt="Image"> --}}
+                                    <div class="card-footer">
+                                        <div class="profile-result">
+                                            {{-- <img src="{{asset('/storage/'.$profile->profile_pic)}}" height="51px;"alt="Image"> --}}
+                                        </div>
+                                            <span>
+                                                <h4 class="card-title" style="margin-bottom:0;"><b>{{$allUser->name}}</b></h4>
+                                            </span>
+                                        <br>
+                                        <div>
+                                            @if (checkFollowing($allUser->id, Auth::user()->follow))
+                                                {{-- <p>Already Following</p> --}}
+                                            <form action="/unfollow/{{$allUser->id}}" method="post">
+                                                @csrf
+                                            <input type="hidden" name="user_id" value = "{{$allUser->id}}">
+                                                <input class="btn btn-warning" type="submit" value="Unfollow">
+                                            </form>
                                             @else
-                                                <a href="{{route('unfollow',$allUser->id)}}" class="btn btn-success">Unfollow</a>
-                                            @endif --}}
+                                                <form action="/following/{{$allUser->id}}" method="post">
+                                                    @csrf
+                                                    <input class="btn btn-success"type="submit" value="Follow">
+                                                    <input type="hidden" name="followed" value = "{{$allUser->id}}">
+
+                                                </form>
+                                            @endif
+                                        </div>
+                                        <br>
+                                        <div class="button-lg">
+                                            <a href="/profile/{{$allUser->id}}" class="btn btn-primary btn-block">Show Profile</a>
+                                        </div>
                                     </div>
                                 </div>
-
-                            @endforeach
-
+                                <br>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -68,31 +64,3 @@
 </div>
 
 @endsection
-
-
-{{-- @extends('layouts.app')
-
-@php
-    function checkFollowing($userToCheck, $follows) {
-        foreach ($follows as $follow) {
-            if($follow->followed == $userToCheck) {
-                return true;
-            }
-        }
-        return false;
-    }
-@endphp
-
-@section('content')
-    @foreach ($users as $user)
-        <p>{{$user->name}}</p>
-        @if (checkFollowing($user->name, $follows))
-            <p>Already Following!</p>
-        @else
-            <form action="/Profiles" method="post">
-                @csrf
-                <input type="submit" value="Follow">
-            </form>
-        @endif
-    @endforeach
-@endsection --}}

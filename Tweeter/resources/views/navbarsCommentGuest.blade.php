@@ -11,7 +11,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/like/{{$comment->id}}">
+        <a class="nav-link" href="#">
             <span class="fas fa-heart"> </span> Like ({{$likeCount}})
         </a>
     </li>

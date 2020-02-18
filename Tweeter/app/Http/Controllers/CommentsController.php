@@ -44,8 +44,13 @@ class CommentsController extends Controller
 
     function deleteComment($id){
         $result = \App\Comment::find($id);
-        $result->delete();
-        return Redirect::back()->with('success','Your comment has been deleted successfully!');
+        if($result->user_id == Auth::user()->id){
+            $result->delete();
+            return Redirect::back()->with('success','Your comment has been deleted successfully!');
+        }else{
+            return redirect('/comment/'.$result->tweet_id)->with('warning','You can only delete your own comment!');
+
+        }
     }
 
 

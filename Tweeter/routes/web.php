@@ -19,39 +19,35 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/tweets/addTweet', 'TweetsController@addTweet');
-Route::get('/view/{id}', 'TweetsController@view');
-Route::get('/edit/{id}', 'TweetsController@edit');
-Route::post('/editTweet/{id}','TweetsController@editTweet');
-Route::get('/delete/{id}','TweetsController@deleteTweet');
-Route::get('/like/{id}','LikesController@like');
-Route::get('/dislike/{id}','DislikesController@dislike');
+Route::post('/tweets/addTweet', 'TweetsController@addTweet')->middleware('auth');
+Route::get('/view/{id}', 'TweetsController@view')->middleware('auth');
+Route::get('/edit/{id}', 'TweetsController@edit')->middleware('auth');
+Route::post('/editTweet/{id}','TweetsController@editTweet')->middleware('auth');
+Route::get('/delete/{id}','TweetsController@deleteTweet')->middleware('auth');
+Route::post('/like/{id}','LikesController@like')->middleware('auth');
+Route::post('/unlike/{id}','LikesController@unlike')->middleware('auth');
+Route::get('/dislike/{id}','DislikesController@dislike')->middleware('auth');
 
 
-Route::get('/comment/{id}','CommentsController@edit')->name('comments');
-Route::post('/commentPost/{id}','CommentsController@commentPost');
-Route::get('/viewComment/{id}','CommentsController@view');
-Route::post('/editComment/{id}','CommentsController@editComment');
-Route::get('/deleteComment/{id}','CommentsController@deleteComment');
+Route::get('/comment/{id}','CommentsController@edit')->name('comments')->middleware('auth');
+Route::post('/commentPost/{id}','CommentsController@commentPost')->middleware('auth');
+Route::get('/viewComment/{id}','CommentsController@view')->middleware('auth');
+Route::post('/editComment/{id}','CommentsController@editComment')->middleware('auth');
+Route::get('/deleteComment/{id}','CommentsController@deleteComment')->middleware('auth');
 
-Route::post('/follow/{id}', 'FollowsController@follow');
-Route::post('/unfollow/{id}', 'FollowsController@unfollow');
+Route::get('/profile/{id}','ProfilesController@showGuestProfile')->middleware('auth');
+Route::post('/profile/{id}','ProfilesController@showProfile')->middleware('auth');
+Route::post('/addProfile/{id}','ProfilesController@addProfile')->middleware('auth');
+Route::post('/updateProfileForm/{id}','ProfilesController@updateForm')->middleware('auth');
+Route::post('/updateProfile/{id}','ProfilesController@updateProfile')->middleware('auth');
+Route::post('/deleteProfile/{id}','ProfilesController@deleteProfile')->middleware('auth');
+
+Route::get('/search','SearchController@search')->name('search')->middleware('auth');
+Route::get('/users','FollowsController@allUsers')->middleware('auth');
+Route::post('/following/{id}','FollowsController@following')->name('following')->middleware('auth');
+Route::post('/unfollow/{id}','FollowsController@unfollow')->name('unfollow')->middleware('auth');
 
 
-Route::get('/profile/{id}','ProfilesController@showGuestProfile');
-Route::post('/profile/{id}','ProfilesController@showProfile');
-Route::post('/addProfile/{id}','ProfilesController@addProfile');
-Route::post('/updateProfileForm/{id}','ProfilesController@updateForm');
-Route::post('/updateProfile/{id}','ProfilesController@updateProfile');
-Route::post('/deleteProfile/{id}','ProfilesController@deleteProfile');
-
-Route::post('/search','SearchController@search')->name('search');
-Route::get('/users','FollowsController@allUsers');
-Route::get('/following/{id}','FollowsController@following')->name('following');
-Route::get('/unfollow/{id}','FollowsController@unfollow')->name('unfollow');
-
-Route::get('/sfollowing/{id}','FollowsController@sfollowing')->name('sfollowing');
-Route::get('/sunfollow/{id}','FollowsController@sunfollow')->name('sunfollow');
 
 
 

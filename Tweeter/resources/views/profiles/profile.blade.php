@@ -9,17 +9,27 @@
                 <div class="card-header">Profile</div>
                     <div class="card-body">
                         @include('flashMessage')
+                        @php
+                        function checkLike($tweetToCheck, $users){
+                            foreach ($users as $user) {
+                            if($user->tweet_id == $tweetToCheck) {
+                            return true;
+                            }
+                        }
+                            return false;
+                        }
+                        @endphp
                         @if (count($profiles)>0)
                             @foreach ($profiles as $profile)
                                 <div>
-                                    <img class="profileImage" src="{{asset('/storage/'.$profile->profile_pic)}}" style="border-radius:50%" alt="Image">
+                                    <img class="profileImage" src="{{asset('/storage/'.$profile->profile_pic)}}" style="border-radius:50%; width:150px; height:150px;" alt="Image">
                                     <br>
                                     <br>
                                     <h2>{{$profile->name}}</h2>
-                                    {{$profile->gender}} <br>
-                                    {{$profile->date_of_birth}}<br>
-                                    {{$profile->quote}}<br>
-                                    <p>Member since: {{$profile->created_at}}</p>
+                                    <b>Gender :</b> {{$profile->gender}} <br>
+                                    <b>Date of Birth : </b>{{$profile->date_of_birth}}<br>
+                                    <b>Inspiring Quote : </b>{{$profile->quote}}<br>
+                                    <b>Member Since :</b> {{$profile->created_at}}
                                 </div>
 
                                 <div>
@@ -28,9 +38,12 @@
                                         $followersCount = count(\App\Follow::where('followed','=', $profile->user_id)->get());
 
                                     @endphp
-                                        <span>Following ({{$followingCount}}) </span>
-                                        <span>Follower ({{$followersCount}}) </span>
-                                <br>
+                                    <hr>
+                                    <div>
+                                        <span style="color:#1DA1F2">Following ({{$followingCount}}) </span>
+                                        <span style="color:#1DA1F2">Follower ({{$followersCount}}) </span>
+                                    </div>
+                                    <br>
 
                                 <form action="/updateProfileForm/{{$profile->id}}" method="POST" style="display:inline-block">
                                     @csrf
@@ -127,19 +140,49 @@
                                     @if ($tweet-> user_id == Auth::user()->id)
                                     <a href="/profile/{{$tweet->user->id}}"><p><strong>{{$tweet-> user->name}}</strong></p></a>
                                     <p>{{substr($tweet-> content,0,150)}}</p>
-                                        <p><i>Posted on: {{$tweet-> created_at}}</i></p>
-                                        <p><i>Updated on: {{$tweet-> updated_at}}</i></p>
+                                    <p class = "time"><i>Posted: {{$tweet-> created_at->diffForHumans()}}</i></p>
+                                    <p class = "time"><i>Updated: {{$tweet-> updated_at->diffForHumans()}}</i></p>
 
                                         @include('navbarUser')
+                                        @if (checkLike($tweet->id, Auth::user()->like))
+                                                {{-- <p>Already Following</p> --}}
+                                            <form action="/unlike/{{$tweet->id}}" method="post">
+                                                @csrf
+                                            <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
+                                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                            </form>
+                                            @else
+                                                <form action="/like/{{$tweet->id}}" method="post">
+                                                    @csrf
+                                                    <input class="btn btn-success"type="submit" value="Like">
+                                                    <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
+
+                                                </form>
+                                            @endif
                                         <br>
                                         <hr>
                                     @else
                                         <a href="/profile/{{$tweet->user->id}}"><p><strong>{{$tweet-> user->name}}</strong></p></a>
                                         <p>{{substr($tweet-> content,0,150)}}</p>
-                                        <p><i>Posted on: {{$tweet-> created_at}}</i></p>
-                                        <p><i>Updated on: {{$tweet-> updated_at}}</i></p>
+                                        <p class = "time"><i>Posted: {{$tweet-> created_at->diffForHumans()}}</i></p>
+                                        <p class = "time"><i>Updated: {{$tweet-> updated_at->diffForHumans()}}</i></p>
 
                                         @include('navbarGuest')
+                                        @if (checkLike($tweet->id, Auth::user()->like))
+                                                {{-- <p>Already Following</p> --}}
+                                            <form action="/unlike/{{$tweet->id}}" method="post">
+                                                @csrf
+                                            <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
+                                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                            </form>
+                                            @else
+                                                <form action="/like/{{$tweet->id}}" method="post">
+                                                    @csrf
+                                                    <input class="btn btn-success"type="submit" value="Like">
+                                                    <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
+
+                                                </form>
+                                            @endif
                                         <hr>
                                     @endif
                                 @endforeach

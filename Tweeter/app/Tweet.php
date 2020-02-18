@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Tweet extends Model
 {
@@ -21,6 +22,5 @@ class Tweet extends Model
     function dislike(){
         return $this->hasMany('\App\Dislike');
     }
-
 
 }

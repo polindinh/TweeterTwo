@@ -76,7 +76,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #f8fafc;
+  background-color: #1DA1F2;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -262,6 +262,8 @@ textarea {
   font-size: inherit;
   line-height: inherit;
 }
+
+
 
 button,
 input {
@@ -11358,6 +11360,8 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+
+
 }
 
 /*!
@@ -17247,6 +17251,11 @@ readers do not read off random characters that represent icons */
   overflow: visible;
   position: static;
   width: auto;
+}
+
+.time{
+    display:inline-block;
+    margin-right:40px;
 }
 
 

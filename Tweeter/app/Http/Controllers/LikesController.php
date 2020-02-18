@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use DB;
 use Illuminate\Support\Facades\Redirect;
+use \App\Like;
 
 class LikesController extends Controller
 {
@@ -20,10 +21,18 @@ class LikesController extends Controller
             $like->user_id = $user_id;
             $like->tweet_id = $tweet_id;
             $like->save();
-            return redirect('home');
+            return back();
         }else{
             return Redirect::back();
 
         }
+    }
+
+    public function unlike($id){
+        Like::where('user_id', Auth::user()->id)
+                ->where('tweet_id', $id)
+                ->delete();
+        return back();
+
     }
 }

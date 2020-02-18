@@ -22,10 +22,15 @@ class TweetsController extends Controller
         return Redirect::route('home', ['tweets'=>$result])->with('success','Your tweet has been created successfully!');
     }
     function deleteTweet(Request $request){
+        $tweets = \App\Tweet::find($request->id);
+        if($tweets->user_id == Auth::user()->id){
             \App\Tweet::destroy($request->id);
             $result = \App\Tweet::all();
             return Redirect::route('home', ['tweets'=>$result])->with('success','Your tweet has been deleted successfully!');
+        }else{
+            return Redirect::route('home',['tweets'=>$tweets])->with('warning', 'You can only delete your own tweets');
         }
+    }
 
 
     function edit(Request $request){

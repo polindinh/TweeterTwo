@@ -26,7 +26,8 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ps">
 
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/home') }}">
+                                <br>
+                <a class="navbar-brand" href="{{ url('/home') }}" style="color:#1DA1F2">
                     TWEETER
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -58,7 +59,7 @@
                                 </li>
                             @endif
                         @else
-                            <form action="{{route('search')}}" method="POST" class="navbar-nav ml-auto">
+                            <form action="{{route('search')}}" method="get" class="navbar-nav ml-auto">
                                 @csrf
                                 <input type="text" name="search" class="form-control" placeholder="search...">
                                 <button class="btn btn-primary" type="submit">Go</button>

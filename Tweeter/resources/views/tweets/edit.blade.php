@@ -8,6 +8,16 @@
                 <div class="card-header">Edit Tweet</div>
                     <div class="card-body">
                         <div>
+                            @php
+                        function checkLike($tweetToCheck, $users){
+                            foreach ($users as $user) {
+                            if($user->tweet_id == $tweetToCheck) {
+                            return true;
+                            }
+                        }
+                            return false;
+                        }
+                        @endphp
                             @if ($tweets-> user_id !== Auth::user()->id)
                             <div class="row justify-content-center">
                                 <p>You can only edit your own tweets</p>
@@ -37,6 +47,21 @@
 
                             @endphp
                             @include('navbarsUser')
+                            @if (checkLike($tweets->id, Auth::user()->like))
+                            {{-- <p>Already Following</p> --}}
+                        <form action="/unlike/{{$tweets->id}}" method="post">
+                            @csrf
+                        <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
+                            <input class="btn btn-warning" type="submit" value="Unlike">
+                        </form>
+                        @else
+                            <form action="/like/{{$tweets->id}}" method="post">
+                                @csrf
+                                <input class="btn btn-success"type="submit" value="Like">
+                                <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
+
+                            </form>
+                        @endif
                             @endif
 
 

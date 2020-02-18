@@ -15,16 +15,18 @@ use Illuminate\Support\Facades\Redirect;
 
 class ProfilesController extends Controller
 {
-    public function showProfile($id){
-        $profiles = \App\Profile::where('user_id','=',$id)->get();
-        $tweets = \App\Tweet::where('user_id', '=', $id )->get();
-        return view('profiles.profile', ['profiles'=> $profiles,'tweets'=>$tweets]);
+    public function showProfile(Request $request){
+        $profiles = \App\Profile::where('user_id','=',$request->id)->get();
+        $tweets = \App\Tweet::where('user_id', '=', $request->id )->get();
+        $users = \App\User::find($request->id);
+        return view('profiles.profile', ['profiles'=> $profiles,'tweets'=>$tweets,'users'=>$users]);
     }
 
-    public function showGuestProfile($id){
-        $profiles = \App\Profile::where('user_id','=',$id)->first();
-        $tweets = \App\Tweet::where('user_id', '=', $id )->get();
-        return view('profiles.allprofiles', ['profiles'=> $profiles,'tweets'=>$tweets]);
+    public function showGuestProfile(Request $request){
+        $profiles = \App\Profile::where('user_id','=',$request->id)->first();
+        $tweets = \App\Tweet::where('user_id', '=', $request->id )->get();
+        $users = \App\User::find($request->id);
+        return view('profiles.allprofiles', ['profiles'=> $profiles,'tweets'=>$tweets,'users'=>$users]);
     }
 
     public function addProfile(Request $request){
