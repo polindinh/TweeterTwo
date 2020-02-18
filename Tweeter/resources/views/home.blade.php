@@ -118,6 +118,8 @@
                                 <p>No tweet found!</p>
                             @endif
                         @endguest
+                        {{ $tweets->links() }}
+
 
                     </div>
                 </div>
@@ -127,6 +129,7 @@
         </div>
     </div>
 </div>
+
 
 @endsection
 

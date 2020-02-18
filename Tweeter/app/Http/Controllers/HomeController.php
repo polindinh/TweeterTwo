@@ -8,6 +8,7 @@ use App\User;
 use DB;
 use Auth;
 use App\Tweet;
+use Illuminate\Http\Resources\Json\PaginatedResourceResponse;
 
 class HomeController extends Controller
 {
@@ -28,7 +29,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $tweets = \App\Tweet::orderBy('id', 'DESC')->get();
+        $tweets = \App\Tweet::orderBy('id', 'DESC')->simplePaginate(3);
         $users = \App\User::all();
         $follows = \App\User::find(Auth::user()->id)->follow;
         return view('home',['tweets'=>$tweets,'users'=>$users, 'follows'=>$follows]);

@@ -74,7 +74,7 @@
                                         <label for="date_of_birth" class="col-md-4 col-form-label text-md-right">{{ __('Date of Birth') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="date_of_birth" type="text" class="form-control @error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{ old('date_of_birth') }}" required autocomplete="date_of_birth" autofocus placeholder="YYYY-MM-DD">
+                                            <input id="date_of_birth" type="text" class="form-control rounded-pill @error('date_of_birth') is-invalid @enderror" name="date_of_birth" value="{{ old('date_of_birth') }}" required autocomplete="date_of_birth" autofocus placeholder="YYYY-MM-DD">
 
                                             @error('date_of_birth')
                                                 <span class="invalid-feedback" role="alert">
@@ -88,7 +88,7 @@
                                         <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="gender" type="gender" class="form-control @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender" placeholder="Male/Female/Other">
+                                            <input id="gender" type="gender" class="form-control rounded-pill @error('gender') is-invalid @enderror" name="gender" value="{{ old('gender') }}" required autocomplete="gender" placeholder="Male/Female/Other">
 
                                             @error('gender')
                                                 <span class="invalid-feedback" role="alert">
@@ -102,7 +102,7 @@
                                         <label for="quote" class="col-md-4 col-form-label text-md-right">{{ __('An Inspiring Quote') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="quote" type="quote" class="form-control @error('quote') is-invalid @enderror" name="quote" required autocomplete="quote" placeholder="Do one thing every day that scares you.">
+                                            <input id="quote" type="quote" class="form-control rounded-pill @error('quote') is-invalid @enderror" name="quote" required autocomplete="quote" placeholder="Do one thing every day that scares you.">
 
                                             @error('quote')
                                                 <span class="invalid-feedback" role="alert">
@@ -116,13 +116,13 @@
                                         <label for="profile_pic" class="col-md-4 col-form-label text-md-right">{{ __('Profile Image') }}</label>
 
                                         <div class="col-md-6">
-                                            <input id="profile_pic" type="file" class="form-control" name="profile_pic" required autocomplete="profile_pic">
+                                            <input id="profile_pic" type="file" class="form-control rounded-pill" name="profile_pic" required autocomplete="profile_pic">
                                         </div>
                                     </div>
 
                                     <div class="form-group row mb-0">
                                         <div class="col-md-6 offset-md-4">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-primary rounded-pill">
                                                 {{ __('Create Profile') }}
                                             </button>
                                         </div>
