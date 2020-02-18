@@ -1,3 +1,10 @@
+@php
+$commentCount = count(\App\Tweet::find($tweets->id)->comment);
+
+// $dislikeCount = count(\App\Tweet::find($tweet->id)->dislike);
+
+
+@endphp
 <ul class="nav">
 
     <li class="nav-item">
@@ -7,7 +14,7 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/comment/{{$tweets->id}}">
-            <span class="fas fa-comment"> </span> COMMENT
+            <span class="fas fa-comment"> </span> COMMENT ({{$commentCount}})
         </a>
     </li>
     <li class="nav-item">

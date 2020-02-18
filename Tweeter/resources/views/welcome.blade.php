@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Tweeter</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -13,6 +13,8 @@
         <style>
             html, body {
                 background-color:#1DA1F2;
+                background: linear-gradient(to top, #99ccff 0%, #3366ff 100%);
+
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
                 font-weight: 200;
@@ -36,8 +38,8 @@
 
             .top-right {
                 position: absolute;
-                right: 42%;
-                top: 60%;
+                right: 18px;
+                top: 25px;
 
 
 

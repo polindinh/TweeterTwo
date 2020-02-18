@@ -16,7 +16,7 @@
                             }
                                 return false;
                             }
-                           
+
                         @endphp
                         @foreach ($allUsers as $allUser)
                             <div class="col-md-4">
@@ -36,12 +36,12 @@
                                             <form action="/unfollow/{{$allUser->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$allUser->id}}">
-                                                <input class="btn btn-warning" type="submit" value="Unfollow">
+                                                <input class="btn btn-warning rounded-pill" type="submit" value="Unfollow">
                                             </form>
                                             @else
                                                 <form action="/following/{{$allUser->id}}" method="post">
                                                     @csrf
-                                                    <input class="btn btn-success"type="submit" value="Follow">
+                                                    <input class="btn btn-success rounded-pill"type="submit" value="Follow">
                                                     <input type="hidden" name="followed" value = "{{$allUser->id}}">
 
                                                 </form>
@@ -49,7 +49,7 @@
                                         </div>
                                         <br>
                                         <div class="button-lg">
-                                            <a href="/profile/{{$allUser->id}}" class="btn btn-primary btn-block">Show Profile</a>
+                                            <a href="/profile/{{$allUser->id}}" class="btn btn-primary btn-block rounded-pill">Show Profile</a>
                                         </div>
                                     </div>
                                 </div>

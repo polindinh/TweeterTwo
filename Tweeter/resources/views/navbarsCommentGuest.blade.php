@@ -7,7 +7,7 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/comment/{{$comment->id}}">
-            <span class="fas fa-comment"> </span> COMMENT
+            <span class="fas fa-comment"> </span> COMMENT ({{$commentCount}})
         </a>
     </li>
     <li class="nav-item">

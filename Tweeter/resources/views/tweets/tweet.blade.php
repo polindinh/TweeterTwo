@@ -33,17 +33,19 @@
 
                                         @endphp
                                         @include('navbarsUser')
+                                        <br>
+
                                         @if (checkLike($tweets->id, Auth::user()->like))
                                                 {{-- <p>Already Following</p> --}}
                                             <form action="/unlike/{{$tweets->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
-                                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                                <input class="btn btn-warning rounded-pill" type="submit" value="Unlike">
                                             </form>
                                             @else
                                                 <form action="/like/{{$tweets->id}}" method="post">
                                                     @csrf
-                                                    <input class="btn btn-success"type="submit" value="Like">
+                                                    <input class="btn btn-success rounded-pill"type="submit" value="Like">
                                                     <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
 
                                                 </form>
@@ -61,17 +63,19 @@
 
                                         @endphp
                                         @include('navbarsGuest')
+                                        <br>
+
                                         @if (checkLike($tweets->id, Auth::user()->like))
                                                 {{-- <p>Already Following</p> --}}
                                             <form action="/unlike/{{$tweets->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
-                                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                                <input class="btn btn-warning rounded-pill" type="submit" value="Unlike">
                                             </form>
                                             @else
                                                 <form action="/like/{{$tweets->id}}" method="post">
                                                     @csrf
-                                                    <input class="btn btn-success"type="submit" value="Like">
+                                                    <input class="btn btn-success rounded-pill"type="submit" value="Like">
                                                     <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
 
                                                 </form>

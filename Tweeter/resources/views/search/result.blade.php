@@ -31,24 +31,28 @@
                                                 </span>
                                             <br>
                                             <div>
-                                                @if (checkFollowing($searchUser->id, Auth::user()->follow))
-                                                <form action="/unfollow/{{$searchUser->id}}" method="post">
-                                                    @csrf
-                                                <input type="hidden" name="user_id" value = "{{$searchUser->id}}">
-                                                    <input class="btn btn-warning" type="submit" value="Unfollow">
-                                                </form>
-                                                @else
-                                                    <form action="/following/{{$searchUser->id}}" method="post">
+                                                @if($searchUser->id !== Auth::user()->id)
+                                                    @if (checkFollowing($searchUser->id, Auth::user()->follow))
+                                                    <form action="/unfollow/{{$searchUser->id}}" method="post">
                                                         @csrf
-                                                        <input class="btn btn-success" type="submit" value="Follow">
-                                                        <input type="hidden" name="followed" value = "{{$searchUser->id}}">
-
+                                                    <input type="hidden" name="user_id" value = "{{$searchUser->id}}">
+                                                        <input class="btn btn-warning rounded-pill" type="submit" value="Unfollow">
                                                     </form>
+                                                    @else
+                                                        <form action="/following/{{$searchUser->id}}" method="post">
+                                                            @csrf
+                                                            <input class="btn btn-success rounded-pill" type="submit" value="Follow">
+                                                            <input type="hidden" name="followed" value = "{{$searchUser->id}}">
+
+                                                        </form>
+                                                    @endif
+                                                @else
+                                                    <p>Your Profile</p>
                                                 @endif
                                             </div>
                                             <br>
                                             <div class="button-lg">
-                                                <a href="/profile/{{$searchUser->id}}" class="btn btn-primary btn-block">Show Profile</a>
+                                                <a href="/profile/{{$searchUser->id}}" class="btn btn-primary btn-block rounded-pill">Show Profile</a>
                                             </div>
                                         </div>
                                     </div>

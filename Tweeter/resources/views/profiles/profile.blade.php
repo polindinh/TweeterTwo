@@ -49,14 +49,14 @@
                                     @csrf
                                     <input type="hidden" name="user_id" value={{Auth::user()->id}} class="btn btn-bg btn-primary">
                                     <input type="hidden" name="id" value={{$profile->id}} class="btn btn-bg btn-primary">
-                                    <input type="submit" value="Edit Profile"  class="btn btn-bg btn-primary">
+                                    <input type="submit" value="Edit Profile"  class="btn btn-bg btn-primary rounded-pill">
                                 </form>
 
                                     <form action="/deleteProfile/{{$profile->id}}" method="POST" style="display:inline-block">
                                         @csrf
                                         <input type="hidden" name="user_id" value={{Auth::user()->id}} class="btn btn-bg btn-primary">
                                         <input type="hidden" name="id" value={{$profile->id}} class="btn btn-bg btn-primary">
-                                        <input type="submit" value="Delete Profile"  class="btn btn-bg btn-primary">
+                                        <input type="submit" value="Delete Profile"  class="btn btn-bg btn-primary rounded-pill">
                                     </form>
                                 <br>
 
@@ -144,17 +144,19 @@
                                     <p class = "time"><i>Updated: {{$tweet-> updated_at->diffForHumans()}}</i></p>
 
                                         @include('navbarUser')
+                                        <br>
+
                                         @if (checkLike($tweet->id, Auth::user()->like))
                                                 {{-- <p>Already Following</p> --}}
                                             <form action="/unlike/{{$tweet->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
-                                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                                <input class="btn btn-warning rounded-pill" type="submit" value="Unlike">
                                             </form>
                                             @else
                                                 <form action="/like/{{$tweet->id}}" method="post">
                                                     @csrf
-                                                    <input class="btn btn-success"type="submit" value="Like">
+                                                    <input class="btn btn-success rounded-pill"type="submit" value="Like">
                                                     <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
 
                                                 </form>
@@ -168,17 +170,19 @@
                                         <p class = "time"><i>Updated: {{$tweet-> updated_at->diffForHumans()}}</i></p>
 
                                         @include('navbarGuest')
+                                        <br>
+
                                         @if (checkLike($tweet->id, Auth::user()->like))
                                                 {{-- <p>Already Following</p> --}}
                                             <form action="/unlike/{{$tweet->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
-                                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                                <input class="btn btn-warning rounded-pill" type="submit" value="Unlike">
                                             </form>
                                             @else
                                                 <form action="/like/{{$tweet->id}}" method="post">
                                                     @csrf
-                                                    <input class="btn btn-success"type="submit" value="Like">
+                                                    <input class="btn btn-success rounded-pill"type="submit" value="Like">
                                                     <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
 
                                                 </form>

@@ -57,8 +57,8 @@
                                             @csrf
                                             <input type="hidden" name="user_id" value={{Auth::user()->id}} class="btn btn-bg btn-primary">
                                             <input type="hidden" name="id" value={{$profiles->id}} class="btn btn-bg btn-primary">
-                                            <input type="submit" value="Edit Profile"  class="btn btn-bg btn-primary">
-                                            <input type="submit" value="Delete Profile"  class="btn btn-bg btn-primary">
+                                            <input type="submit" value="Edit Profile"  class="btn btn-bg btn-primary rounded-pill">
+                                            <input type="submit" value="Delete Profile"  class="btn btn-bg btn-primary rounded-pill">
 
                                         </form>
                                     @else
@@ -90,12 +90,12 @@
                                                 <form action="/unfollow/{{$users->id}}" method="post">
                                                     @csrf
                                                 <input type="hidden" name="user_id" value = "{{$users->id}}">
-                                                    <input class="btn btn-warning" type="submit" value="Unfollow">
+                                                    <input class="btn btn-warning rounded-pill" type="submit" value="Unfollow">
                                                 </form>
                                                 @else
                                                     <form action="/following/{{$users->id}}" method="post">
                                                         @csrf
-                                                        <input class="btn btn-success"type="submit" value="Follow">
+                                                        <input class="btn btn-success rounded-pill"type="submit" value="Follow">
                                                         <input type="hidden" name="followed" value = "{{$users->id}}">
                                                     </form>
                                                 @endif
@@ -123,17 +123,18 @@
                                         <p class = "time"><i>Updated: {{$tweet-> updated_at->diffForHumans()}}</i></p>
 
                                         @include('navbarUser')
+                                        <br>
                                         @if (checkLike($tweet->id, Auth::user()->like))
                                                 {{-- <p>Already Following</p> --}}
                                             <form action="/unlike/{{$tweet->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
-                                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                                <input class="btn btn-warning rounded-pill" type="submit" value="Unlike">
                                             </form>
                                             @else
                                                 <form action="/like/{{$tweet->id}}" method="post">
                                                     @csrf
-                                                    <input class="btn btn-success"type="submit" value="Like">
+                                                    <input class="btn btn-success rounded-pill"type="submit" value="Like">
                                                     <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
 
                                                 </form>
@@ -147,17 +148,19 @@
                                         <p class = "time"><i>Updated: {{$tweet-> updated_at->diffForHumans()}}</i></p>
 
                                         @include('navbarGuest')
+                                        <br>
+
                                         @if (checkLike($tweet->id, Auth::user()->like))
                                                 {{-- <p>Already Following</p> --}}
                                             <form action="/unlike/{{$tweet->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
-                                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                                <input class="btn btn-warning rounded-pill" type="submit" value="Unlike">
                                             </form>
                                             @else
                                                 <form action="/like/{{$tweet->id}}" method="post">
                                                     @csrf
-                                                    <input class="btn btn-success"type="submit" value="Like">
+                                                    <input class="btn btn-success rounded-pill"type="submit" value="Like">
                                                     <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
 
                                                 </form>

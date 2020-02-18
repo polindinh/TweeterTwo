@@ -30,7 +30,7 @@
                                     <input type="hidden" name="user_id" value= {{Auth::user()->id}}>
                                     <input type="hidden" name="tweet_id" value={{$tweets->id}} >
                                     <textarea class="form-control z-depth-1"  rows="4" cols="93" type="text" name="content" placeholder="What are your thoughts?"></textarea>
-                                    <input class="btn btn-primary" type="submit" name="submit"  style="margin: 15px 0; float:right">
+                                    <input class="btn btn-primary rounded-pill" type="submit" name="submit"  style="margin: 15px 0; float:right">
                                 </form>
                             </div>
                             @if($errors->any())
@@ -50,17 +50,19 @@
 
                                 @endphp
                                 @include('navbarsUser')
+                                <br>
+
                                 @if (checkLike($tweets->id, Auth::user()->like))
                                 {{-- <p>Already Following</p> --}}
                             <form action="/unlike/{{$tweets->id}}" method="post">
                                 @csrf
                             <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
-                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                <input class="btn btn-warning rounded-pill" type="submit" value="Unlike">
                             </form>
                             @else
                                 <form action="/like/{{$tweets->id}}" method="post">
                                     @csrf
-                                    <input class="btn btn-success"type="submit" value="Like">
+                                    <input class="btn btn-success rounded-pill"type="submit" value="Like">
                                     <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
 
                                 </form>
@@ -72,17 +74,19 @@
 
                                  @endphp
                                 @include('navbarsGuest')
-                                @if (checkLike($tweet->id, Auth::user()->like))
+                                <br>
+
+                                @if (checkLike($tweets->id, Auth::user()->like))
                                 {{-- <p>Already Following</p> --}}
                             <form action="/unlike/{{$tweets->id}}" method="post">
                                 @csrf
                             <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
-                                <input class="btn btn-warning" type="submit" value="Unlike">
+                                <input class="btn btn-warning rounded-pill" type="submit" value="Unlike">
                             </form>
                             @else
                                 <form action="/like/{{$tweets->id}}" method="post">
                                     @csrf
-                                    <input class="btn btn-success"type="submit" value="Like">
+                                    <input class="btn btn-success rounded-pill"type="submit" value="Like">
                                     <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
 
                                 </form>
@@ -112,7 +116,7 @@
                                         <br>
                                         <hr>
                                     @else
-                                        <p><strong>{{$comment-> user->name}}</strong></p>
+                                        <a href="/profile/{{$comment->user->id}}"><p><strong>{{$comment-> user->name}}</strong></p></a>
                                         <p>{{$comment-> content}}</p>
                                         <p><i>Commented on: {{$comment-> created_at}}</i></p>
                                         {{-- <p><i>Updated on: {{$comment-> updated_at}}</i></p> --}}

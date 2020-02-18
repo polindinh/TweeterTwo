@@ -26,10 +26,11 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ps">
 
             <div class="container">
-                                <br>
-                <a class="navbar-brand" href="{{ url('/home') }}" style="color:#1DA1F2">
+                <a href="{{ url('/home') }}"><img src="{{asset('/storage/profile_images/Logo.png/')}}" style="width:60px; height:50px;" alt="Image"></a>
+
+                {{-- <a class="navbar-brand" href="{{ url('/home') }}" style="color:#1DA1F2">
                     TWEETER
-                </a>
+                </a> --}}
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -38,7 +39,7 @@
 
                     {{-- <form action="/users" method="get" class="navbar-nav ml-auto"> --}}
                         {{-- @csrf --}}
-                        <a href="/users"  type="submit">Find Users</a>
+                        <a href="/users"  type="submit">All Users</a>
                     {{-- </form> --}}
                     <!-- Left Side Of Navbar -->
                     {{-- <ul class="navbar-nav mr-auto">
@@ -61,8 +62,8 @@
                         @else
                             <form action="{{route('search')}}" method="get" class="navbar-nav ml-auto">
                                 @csrf
-                                <input type="text" name="search" class="form-control" placeholder="search...">
-                                <button class="btn btn-primary" type="submit">Go</button>
+                                <input type="text" name="search" class="form-control rounded-pill" placeholder="search users...">
+                                <button class="btn btn-primary rounded-pill" type="submit" >Go</button>
 
                             </form>
 
