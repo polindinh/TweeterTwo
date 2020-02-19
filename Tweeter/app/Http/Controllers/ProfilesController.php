@@ -73,7 +73,7 @@ class ProfilesController extends Controller
         $profiles -> profile_pic = $request->profile_pic->store('profile_images','public');
         $profiles -> save();
         // $result = \App\Profile::where('id','=',$id)->get();
-        return Redirect::route('home')->with('success','Your profile has been created successfully!');
+        return Redirect::route('home')->with('success','Your profile has been updated successfully!');
         // return view('profiles.updateprofile', ['profiles'=> $profiles]);
 
         }else{
@@ -91,15 +91,20 @@ class ProfilesController extends Controller
         // $profiles -> profile_pic = $request->profile_pic->store('profile_images','public');
         $profiles -> save();
         // $result = \App\Profile::all();
-        return Redirect::route('home')->with('success','Your profile has been created successfully!');
+        return Redirect::route('home')->with('success','Your profile has been updated successfully!');
 
         }
 
     }
     public function deleteProfile(Request $request){
-        \App\Profile::destroy($request->id);
-        $result = \App\Profile::all();
-        return Redirect::route('home', ['profiles'=>$result])->with('success','Your profile has been deleted successfully!');
+        $profile= \App\Profile::find($request->id);
+        if($profile->user_id == Auth::user()->id){
+            \App\Profile::destroy($request->id);
+            $result = \App\Profile::all();
+            return Redirect::route('home', ['profiles'=>$result])->with('success','Your profile has been deleted successfully!');
+        }else{
+            return Redirect::route('home', ['profiles'=>$result])->with('warning', 'You can only delete your own profile');
+        }
     }
 
 }

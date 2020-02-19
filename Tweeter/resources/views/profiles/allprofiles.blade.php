@@ -29,7 +29,7 @@
                         @isset($profiles)
                                 @if ( Auth::user()->id == $profiles->user_id )
                                         <div>
-                                            <img class="profileImage" src="{{asset('/storage/'.$profiles->profile_pic)}}" style="border-radius:50%; width:150px; height:150px;" alt="Image">
+                                            <img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/'.$profiles->profile_pic)}}" style="border-radius:50%" alt="Image">
                                             <br>
                                             <br>
                                             <h2>{{$profiles->name}}</h2>
@@ -43,11 +43,13 @@
                                             @php
                                                 $followingCount = count(\App\Follow::where('user_id','=', $profiles->user_id)->get());
                                                 $followersCount = count(\App\Follow::where('followed','=', $profiles->user_id)->get());
+                                                // $time = date('d-m-Y', strtotime($profiles->created_at));
+
                                             @endphp
                                             <hr>
                                             <div>
                                                 <span style="color:#1DA1F2">Following ({{$followingCount}}) </span>
-                                                <span style="color:#1DA1F2">Follower ({{$followersCount}}) </span>
+                                                <span style="color:#1DA1F2">Followers ({{$followersCount}}) </span>
                                             </div>
                                             <br>
 
@@ -63,7 +65,7 @@
                                         </form>
                                     @else
                                         <div>
-                                            <img class="profileImage" src="{{asset('/storage/'.$profiles->profile_pic)}}" style="border-radius:50%; width:150px; height:150px;" alt="Image">
+                                            <img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/'.$profiles->profile_pic)}}" style="border-radius:50%" alt="Image">
                                             <br>
                                             <br>
                                             <h2>{{$profiles->name}}</h2>
@@ -71,9 +73,7 @@
                                             <b>Gender :</b> {{$profiles->gender}} <br>
                                             <b>Date of Birth : </b>{{$profiles->date_of_birth}}<br>
                                             <b>Inspiring Quote : </b>{{$profiles->quote}}<br>
-                                            <b>Member Since :</b> {{$profiles->created_at}}
-
-
+                                            <b>Member Since :</b> {{date("jS F, Y",strtotime($profiles->created_at))}}
                                             @php
                                                 $followingCount = count(\App\Follow::where('user_id','=', $profiles->user_id)->get());
                                                 $followersCount = count(\App\Follow::where('followed','=', $profiles->user_id)->get());
@@ -81,7 +81,7 @@
                                                 <hr>
                                                 <div>
                                                  <span style="color:#1DA1F2">Following ({{$followingCount}}) </span>
-                                                 <span style="color:#1DA1F2">Follower ({{$followersCount}}) </span>
+                                                 <span style="color:#1DA1F2">Followers ({{$followersCount}}) </span>
                                                 </div>
                                                  <br>
 
@@ -104,7 +104,7 @@
                                     @endif
                         @endisset
                         @empty($profiles)
-                        <p>This user has not set up a profile yet!</p>
+                            <p>This user has not set up a profile yet!</p>
                         @endempty
 
                         <hr>
@@ -171,10 +171,6 @@
                             @else
                                 <p>No tweet found!</p>
                             @endif
-
-
-
-
                     </div>
                 </div>
             </div>

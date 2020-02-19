@@ -22,14 +22,14 @@
                         @if (count($profiles)>0)
                             @foreach ($profiles as $profile)
                                 <div>
-                                    <img class="profileImage" src="{{asset('/storage/'.$profile->profile_pic)}}" style="border-radius:50%; width:150px; height:150px;" alt="Image">
+                                    <img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/'.$profile->profile_pic)}}" style="border-radius:50%" alt="Image">
                                     <br>
                                     <br>
                                     <h2>{{$profile->name}}</h2>
                                     <b>Gender :</b> {{$profile->gender}} <br>
                                     <b>Date of Birth : </b>{{$profile->date_of_birth}}<br>
                                     <b>Inspiring Quote : </b>{{$profile->quote}}<br>
-                                    <b>Member Since :</b> {{$profile->created_at}}
+                                    <b>Member Since :</b> {{date("jS F, Y",strtotime($profile->created_at))}}
                                 </div>
 
                                 <div>
@@ -41,7 +41,7 @@
                                     <hr>
                                     <div>
                                         <span style="color:#1DA1F2">Following ({{$followingCount}}) </span>
-                                        <span style="color:#1DA1F2">Follower ({{$followersCount}}) </span>
+                                        <span style="color:#1DA1F2">Followers ({{$followersCount}}) </span>
                                     </div>
                                     <br>
 

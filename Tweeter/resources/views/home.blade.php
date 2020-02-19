@@ -9,7 +9,7 @@
             <div class="card">
                 <div class="card-header">Home</div>
                     <div class="card-body">
-                       @include('flashMessage')
+                        @include('flashMessage')
                         @guest
                             <div class="row justify-content-center">
                                 <p>You are not authorized to access this page. Please login or register</p>
@@ -18,12 +18,12 @@
                         @php
                         function checkLike($tweetToCheck, $users){
                             foreach ($users as $user) {
-                            if($user->tweet_id == $tweetToCheck) {
-                            return true;
+                                if($user->tweet_id == $tweetToCheck) {
+                                return true;
+                                }
                             }
-                        }
-                            return false;
-                        }
+                                return false;
+                            }
                         @endphp
 
                             <h3>Welcome {{Auth::user()->name}}</h3>
@@ -105,12 +105,8 @@
                                             @csrf
                                             <input class="btn btn-success rounded-pill"type="submit" value="Like">
                                             <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
-
                                         </form>
                                     @endif
-
-
-
                                         <hr>
                                     @endif
                                 @endforeach
@@ -119,17 +115,12 @@
                             @endif
                         @endguest
                         {{ $tweets->links() }}
-
-
                     </div>
                 </div>
             </div>
         </div>
-            </div>
-        </div>
     </div>
 </div>
-
 
 @endsection
 

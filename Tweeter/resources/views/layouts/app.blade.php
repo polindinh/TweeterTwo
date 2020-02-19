@@ -39,7 +39,7 @@
 
                     {{-- <form action="/users" method="get" class="navbar-nav ml-auto"> --}}
                         {{-- @csrf --}}
-                        <a href="/users"  type="submit">All Users</a>
+                        <a href="/users"  type="submit" style="margin-left:20px">All Users</a>
                     {{-- </form> --}}
                     <!-- Left Side Of Navbar -->
                     {{-- <ul class="navbar-nav mr-auto">
@@ -52,7 +52,7 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link " href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
@@ -60,23 +60,23 @@
                                 </li>
                             @endif
                         @else
-                            <form action="{{route('search')}}" method="get" class="navbar-nav ml-auto">
+                            <form action="{{route('search')}}" method="get" class="navbar-nav ml-auto ">
                                 @csrf
-                                <input type="text" name="search" class="form-control rounded-pill" placeholder="search users...">
-                                <button class="btn btn-primary rounded-pill" type="submit" >Go</button>
+                                <input type="text" name="search" class="form-control rounded-pill border border-primary" placeholder="search users...">
+                                <button class="btn btn-primary rounded-pill " type="submit">Go</button>
 
                             </form>
 
 
                             <li class="nav-item dropdown">
 
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-danger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     {{-- <a class="dropdown-item" href="/profile"> Profile</a> --}}
-                                    <a class="dropdown-item" href="/profile/{{Auth::user()->id}}"
+                                    <a class="dropdown-item text-danger" href="/profile/{{Auth::user()->id}}"
                                     onclick="event.preventDefault();
                                                   document.getElementById('profile-form').submit();">
                                      {{ __('Profile') }}
@@ -84,7 +84,7 @@
                                  <form id="profile-form" action="/profile/{{Auth::user()->id}}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
