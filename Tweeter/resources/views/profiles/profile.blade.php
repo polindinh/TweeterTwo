@@ -58,6 +58,12 @@
                                         <input type="hidden" name="id" value={{$profile->id}} class="btn btn-bg btn-primary">
                                         <input type="submit" value="Delete Profile"  class="btn btn-bg btn-primary rounded-pill">
                                     </form>
+                                    <form action="/deleteUser/{{Auth::user()->id}}" method="POST" style="display:inline-block">
+                                        @csrf
+                                        <input type="hidden" name="id" value={{Auth::user()->id}} class="btn btn-bg btn-primary">
+                                        {{-- <input type="hidden" name="id" value={{$profile->id}} class="btn btn-bg btn-primary"> --}}
+                                        <input type="submit" value="Delete Account"  class="btn btn-bg btn-danger rounded-pill">
+                                    </form>
                                 <br>
 
                                 <hr>

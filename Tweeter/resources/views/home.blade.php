@@ -52,10 +52,7 @@
                                     @php
                                         $likeCount = count(\App\Tweet::find($tweet->id)->like);
                                         $commentCount = count(\App\Tweet::find($tweet->id)->comment);
-
                                         // $dislikeCount = count(\App\Tweet::find($tweet->id)->dislike);
-
-
                                     @endphp
                                     @if ($tweet-> user_id == Auth::user()->id)
                                     <a href="/profile/{{$tweet->user->id}}"><p><strong>{{$tweet-> user->name}}</strong></p></a>

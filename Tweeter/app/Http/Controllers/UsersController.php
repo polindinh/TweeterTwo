@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Auth;
+use Illuminate\Support\Facades\Redirect;
 
 
 class UsersController extends Controller
@@ -19,4 +20,19 @@ class UsersController extends Controller
         }
 
     }
+    function deleteUser(Request $request){
+        $user = \App\User::find($request->id);
+        if($user->id == Auth::user()->id){
+            $user->comment()->delete();
+            $user->tweet()->delete();
+            $user->like()->delete();
+            $user->follow()->delete();
+            $user->profile()->delete();
+            \App\User::destroy($request->id);
+            return Redirect::route('home');
+        }else{
+            return Redirect::route('home')->with('warning', 'You can only delete your own profile');
+        }
+    }
+
 }
