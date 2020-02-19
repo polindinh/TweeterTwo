@@ -28,7 +28,7 @@
                                 <form action="/editTweet/{{$tweets->id}}" method="post">
                                     @csrf
                                     <input type="hidden" name="user_id" value= {{Auth::user()->id}}>
-                                    <textarea class="form-control z-depth-1"  rows="4" cols="93" type="text" name="content">{{$tweets-> content}}</textarea>
+                                    <textarea class="form-control z-depth-1 border border-primary"  rows="4" cols="93" type="text" name="content">{{$tweets-> content}}</textarea>
                                     <input class="btn btn-primary rounded-pill" type="submit" name="submit" value="Update" style="margin: 15px 0; float:right">
                                 </form>
                             </div>

@@ -52,16 +52,15 @@
                                     <input type="submit" value="Edit Profile"  class="btn btn-bg btn-primary rounded-pill">
                                 </form>
 
-                                    <form action="/deleteProfile/{{$profile->id}}" method="POST" style="display:inline-block">
+                                    <form action="/deleteProfileConfirm/{{$profile->id}}" method="POST" style="display:inline-block">
                                         @csrf
                                         <input type="hidden" name="user_id" value={{Auth::user()->id}} class="btn btn-bg btn-primary">
                                         <input type="hidden" name="id" value={{$profile->id}} class="btn btn-bg btn-primary">
                                         <input type="submit" value="Delete Profile"  class="btn btn-bg btn-primary rounded-pill">
                                     </form>
-                                    <form action="/deleteUser/{{Auth::user()->id}}" method="POST" style="display:inline-block">
+                                    <form action="/deleteUserConfirm/{{Auth::user()->id}}" method="POST" style="display:inline-block">
                                         @csrf
                                         <input type="hidden" name="id" value={{Auth::user()->id}} class="btn btn-bg btn-primary">
-                                        {{-- <input type="hidden" name="id" value={{$profile->id}} class="btn btn-bg btn-primary"> --}}
                                         <input type="submit" value="Delete Account"  class="btn btn-bg btn-danger rounded-pill">
                                     </form>
                                 <br>
@@ -137,6 +136,8 @@
                             </div>
                         </div>
                         @endif
+                        <h3>Recent Tweets </h3>
+                        <hr>
                         @if (count($tweets)>0)
                                 @foreach ($tweets as $tweet)
                                     @php
@@ -153,7 +154,6 @@
                                         <br>
 
                                         @if (checkLike($tweet->id, Auth::user()->like))
-                                                {{-- <p>Already Following</p> --}}
                                             <form action="/unlike/{{$tweet->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
@@ -179,7 +179,6 @@
                                         <br>
 
                                         @if (checkLike($tweet->id, Auth::user()->like))
-                                                {{-- <p>Already Following</p> --}}
                                             <form action="/unlike/{{$tweet->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">

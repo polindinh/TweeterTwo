@@ -41,12 +41,15 @@ Route::post('/addProfile/{id}','ProfilesController@addProfile')->middleware('aut
 Route::post('/updateProfileForm/{id}','ProfilesController@updateForm')->middleware('auth');
 Route::post('/updateProfile/{id}','ProfilesController@updateProfile')->middleware('auth');
 Route::post('/deleteProfile/{id}','ProfilesController@deleteProfile')->middleware('auth');
+Route::post('/deleteProfileConfirm/{id}','ProfilesController@deleteProfileConfirm')->middleware('auth');
+
 
 Route::get('/search','SearchController@search')->name('search')->middleware('auth');
 Route::get('/users','FollowsController@allUsers')->middleware('auth');
 Route::post('/following/{id}','FollowsController@following')->name('following')->middleware('auth');
 Route::post('/unfollow/{id}','FollowsController@unfollow')->name('unfollow')->middleware('auth');
 
+Route::post('/deleteUserConfirm/{id}','UsersController@deleteUserConfirm')->middleware('auth');
 Route::post('/deleteUser/{id}','UsersController@deleteUser')->middleware('auth');
 
 

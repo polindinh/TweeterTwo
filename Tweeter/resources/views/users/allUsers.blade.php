@@ -18,12 +18,18 @@
                                     return false;
                                 }
 
+
                             @endphp
                             @foreach ($allUsers as $allUser)
+                            {{-- @php
+                                $profileImage = \App\User::find($allUser->id)->profile;
+                            @endphp --}}
                                 <div class="col-md-4">
                                     <div class="box-card">
                                         <div class="card-footer">
                                             <div class="profile-result">
+                                                {{-- <img class="img-fluid" src="{{asset('/storage/'.$profileImage->profile_pic)}}" style="border-radius:50%;height:100px;width:100px;" alt="Image"> --}}
+
                                                     <span>
                                                         <h4 class="card-title text-center" style="margin-bottom:0;"><b>{{$allUser->name}}</b></h4>
                                                     </span>

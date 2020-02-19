@@ -29,7 +29,7 @@
                                     @csrf
                                     <input type="hidden" name="user_id" value= {{Auth::user()->id}}>
                                     <input type="hidden" name="tweet_id" value={{$tweets->id}} >
-                                    <textarea class="form-control z-depth-1"  rows="4" cols="93" type="text" name="content" placeholder="What are your thoughts?"></textarea>
+                                    <textarea class="form-control z-depth-1 border border-primary"  rows="4" cols="93" type="text" name="content" placeholder="What are your thoughts?"></textarea>
                                     <input class="btn btn-primary rounded-pill" type="submit" name="submit"  style="margin: 15px 0; float:right">
                                 </form>
                             </div>

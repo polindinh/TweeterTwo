@@ -34,5 +34,10 @@ class UsersController extends Controller
             return Redirect::route('home')->with('warning', 'You can only delete your own profile');
         }
     }
+    function deleteUserConfirm(Request $request){
+        $user = \App\User::find($request->id);
+        return view('users.confirm',['user'=>$user]);
+
+    }
 
 }

@@ -26,7 +26,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ps">
 
             <div class="container">
-                <a href="{{ url('/home') }}"><img src="{{asset('/storage/profile_images/Logo.png/')}}" style="width:60px; height:50px;" alt="Image"></a>
+                    <a  href="{{ url('/home') }}"><img src="{{asset('/storage/profile_images/Logo.png/')}}" style="width:60px; height:50px;" alt="Image"></a>
 
                 {{-- <a class="navbar-brand" href="{{ url('/home') }}" style="color:#1DA1F2">
                     TWEETER
@@ -39,7 +39,29 @@
 
                     {{-- <form action="/users" method="get" class="navbar-nav ml-auto"> --}}
                         {{-- @csrf --}}
-                        <a href="/users"  type="submit" style="margin-left:20px">All Users</a>
+                        {{-- <a href="/users"  type="submit" style="margin-left:20px">All Users</a> --}}
+                        @guest
+                        @else
+                        <div class="form-group shadow-textarea ">
+                            <form action="/tweets/addTweet" method="post"class="navbar-nav ml-auto mt-4">
+                                @csrf
+                                <input type="hidden" name="user_id" value= {{Auth::user()->id}}>
+                                <input class="btn btn-primary rounded-pill m-1 " type="submit" name="submit" value="Tweet" >
+                                <input id="field" class="form-control form-control-md rounded-pill border border-primary m-1 "  rows="4" cols="93" type="text" name="content" value="{{old('content')}}" placeholder="What's on your mind?" ></input>
+                            </form>
+                        </div>
+                        @endguest
+                        {{-- <div class="content">
+
+                            <div class="title m-b-lg text-center" style="font-size:75px; color:#1DA1F2;">
+                                Tweeter
+                            </div>
+                        </div> --}}
+
+
+
+                        {{-- <a class="img-fluid rounded mx-auto d-block" href="{{ url('/home') }}"><img src="{{asset('/storage/profile_images/logotweeter.png/')}}" alt="Image"></a> --}}
+
                     {{-- </form> --}}
                     <!-- Left Side Of Navbar -->
                     {{-- <ul class="navbar-nav mr-auto">
@@ -60,15 +82,18 @@
                                 </li>
                             @endif
                         @else
-                            <form action="{{route('search')}}" method="get" class="navbar-nav ml-auto ">
-                                @csrf
-                                <input type="text" name="search" class="form-control rounded-pill border border-primary" placeholder="search users...">
-                                <button class="btn btn-primary rounded-pill " type="submit">Go</button>
+                            <div class="form-group shadow-textarea">
 
-                            </form>
+                                <form action="{{route('search')}}" method="get" class="navbar-nav ml-auto mt-4">
+                                    @csrf
+                                    <input type="text" name="search" class="form-control rounded-pill border border-primary m-1" placeholder="search users...">
+                                    <button class="btn btn-primary rounded-pill m-1 "  type="submit">Go</button>
+
+                                </form>
+                            </div>
 
 
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown mt-4">
 
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-danger" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -84,6 +109,8 @@
                                  <form id="profile-form" action="/profile/{{Auth::user()->id}}" method="POST" style="display: none;">
                                     @csrf
                                 </form>
+                                    <a class="dropdown-item text-danger" href="/users"  type="submit">All Users</a>
+
                                     <a class="dropdown-item text-danger" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

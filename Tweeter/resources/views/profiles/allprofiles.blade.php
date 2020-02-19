@@ -43,7 +43,6 @@
                                             @php
                                                 $followingCount = count(\App\Follow::where('user_id','=', $profiles->user_id)->get());
                                                 $followersCount = count(\App\Follow::where('followed','=', $profiles->user_id)->get());
-                                                // $time = date('d-m-Y', strtotime($profiles->created_at));
 
                                             @endphp
                                             <hr>
@@ -55,13 +54,23 @@
 
 
                                         </div>
-                                        <form action="/updateProfileForm/{{$profiles->id}}" method="POST">
+                                        <form action="/updateProfileForm/{{$profiles->id}}" method="POST" style="display:inline-block">
                                             @csrf
                                             <input type="hidden" name="user_id" value={{Auth::user()->id}} class="btn btn-bg btn-primary">
                                             <input type="hidden" name="id" value={{$profiles->id}} class="btn btn-bg btn-primary">
                                             <input type="submit" value="Edit Profile"  class="btn btn-bg btn-primary rounded-pill">
+                                        </form>
+                                        <form action="/deleteProfileConfirm/{{$profiles->id}}" method="POST" style="display:inline-block">
+                                            @csrf
+                                            <input type="hidden" name="user_id" value={{Auth::user()->id}} class="btn btn-bg btn-primary">
+                                            <input type="hidden" name="id" value={{$profiles->id}} class="btn btn-bg btn-primary">
                                             <input type="submit" value="Delete Profile"  class="btn btn-bg btn-primary rounded-pill">
+                                        </form>
 
+                                        <form action="/deleteUser/{{Auth::user()->id}}" method="POST" style="display:inline-block">
+                                            @csrf
+                                            <input type="hidden" name="id" value={{Auth::user()->id}} class="btn btn-bg btn-primary">
+                                            <input type="submit" value="Delete Account"  class="btn btn-bg btn-danger rounded-pill">
                                         </form>
                                     @else
                                         <div>
@@ -69,7 +78,6 @@
                                             <br>
                                             <br>
                                             <h2>{{$profiles->name}}</h2>
-                                            {{-- {{$profiles->id}} <br> --}}
                                             <b>Gender :</b> {{$profiles->gender}} <br>
                                             <b>Date of Birth : </b>{{$profiles->date_of_birth}}<br>
                                             <b>Inspiring Quote : </b>{{$profiles->quote}}<br>
@@ -86,7 +94,6 @@
                                                  <br>
 
                                                 @if (checkFollowing($users->id, Auth::user()->follow))
-                                                    {{-- <p>Already Following</p> --}}
                                                 <form action="/unfollow/{{$users->id}}" method="post">
                                                     @csrf
                                                 <input type="hidden" name="user_id" value = "{{$users->id}}">
@@ -109,6 +116,7 @@
 
                         <hr>
                         <h3>Recent Tweets </h3>
+                        <hr>
                         @if (count($tweets)>0)
                                 @foreach ($tweets as $tweet)
                                     @php
@@ -125,7 +133,6 @@
                                         @include('navbarUser')
                                         <br>
                                         @if (checkLike($tweet->id, Auth::user()->like))
-                                                {{-- <p>Already Following</p> --}}
                                             <form action="/unlike/{{$tweet->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
@@ -151,7 +158,6 @@
                                         <br>
 
                                         @if (checkLike($tweet->id, Auth::user()->like))
-                                                {{-- <p>Already Following</p> --}}
                                             <form action="/unlike/{{$tweet->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">

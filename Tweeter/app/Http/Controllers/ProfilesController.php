@@ -107,4 +107,10 @@ class ProfilesController extends Controller
         }
     }
 
+    function deleteProfileConfirm(Request $request){
+        $profile = \App\Profile::find($request->id);
+        return view('profiles.confirm',['profile'=>$profile]);
+
+    }
+
 }

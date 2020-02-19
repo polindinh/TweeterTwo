@@ -32,8 +32,8 @@
                                 <form action="/tweets/addTweet" method="post">
                                     @csrf
                                     <input type="hidden" name="user_id" value= {{Auth::user()->id}}>
-                                    <input id="field" class="form-control form-control-lg"  rows="4" cols="93" type="text" name="content" value="{{old('content')}}" placeholder="What's on your mind?" ></input>
-                                    <input class="btn btn-primary rounded-pill" type="submit" name="submit" value="Create Tweet" style="margin: 10px 0; float:right ">
+                                    <input id="field" class="form-control form-control-lg rounded-pill border border-primary"  rows="4" cols="93" type="text" name="content" value="{{old('content')}}" placeholder="What's on your mind?" ></input>
+                                    <input class="btn btn-primary rounded-pill border border-primary" type="submit" name="submit" value="Tweet" style="margin: 10px 0; float:right ">
                                 </form>
                             </div>
                             @if($errors->any())
@@ -52,9 +52,12 @@
                                     @php
                                         $likeCount = count(\App\Tweet::find($tweet->id)->like);
                                         $commentCount = count(\App\Tweet::find($tweet->id)->comment);
+                                        $profileImage = \App\User::find($tweet->user_id)->profile;
                                         // $dislikeCount = count(\App\Tweet::find($tweet->id)->dislike);
                                     @endphp
                                     @if ($tweet-> user_id == Auth::user()->id)
+                                    <img class="img-fluid" src="{{asset('/storage/'.$profileImage->profile_pic)}}" style="border-radius:50%;height:75px;width:75px;" alt="Image">
+                                    <br><br>
                                     <a href="/profile/{{$tweet->user->id}}"><p><strong>{{$tweet-> user->name}}</strong></p></a>
                                     <p>{{substr($tweet-> content,0,150)}}</p>
                                         <p class = "time"><i>Posted: {{$tweet-> created_at->diffForHumans()}}</i></p>
@@ -62,6 +65,7 @@
 
                                         @include('navbarUser')
                                         <br>
+
 
                                         @if (checkLike($tweet->id, Auth::user()->like))
                                                 {{-- <p>Already Following</p> --}}
@@ -83,6 +87,8 @@
                                         <br>
                                         <hr>
                                     @else
+                                        <img class="img-fluid" src="{{asset('/storage/'.$profileImage->profile_pic)}}" style="border-radius:50%;height:75px;width:75px;" alt="Image">
+                                        <br><br>
                                         <a href="/profile/{{$tweet->user->id}}"><p><strong>{{$tweet-> user->name}}</strong></p></a>
                                         <p>{{substr($tweet-> content,0,150)}}</p>
                                         <p class = "time"><i>Posted: {{$tweet-> created_at->diffForHumans()}}</i></p>
