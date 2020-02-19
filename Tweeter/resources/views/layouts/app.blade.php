@@ -23,7 +23,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ps">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ps sticky-top ">
 
             <div class="container">
                     <a  href="{{ url('/home') }}"><img src="{{asset('/storage/profile_images/Logo.png/')}}" style="width:60px; height:50px;" alt="Image"></a>
