@@ -3,9 +3,13 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        @include('layouts.leftbar')
+
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Tweet View</div>
+                <div class="card-header">
+                    <strong>Tweet View</strong>
+                </div>
                     <div class="card-body">
                         <div>
                             @php
@@ -91,7 +95,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        @include('layouts.rightbar')
+
     </div>
 </div>
 @endsection

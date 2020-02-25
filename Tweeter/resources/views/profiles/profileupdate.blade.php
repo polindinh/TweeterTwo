@@ -3,15 +3,20 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        @include('layouts.leftbar')
+
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Profile</div>
-                    <div class="card-body">
-                        @include('flashMessage')
-                    </div>
+                <div class="card-header">
+                    <strong>Profile</strong>
+                </div>
+                <div class="card-body">
+                    @include('flashMessage')
                 </div>
             </div>
         </div>
+        @include('layouts.rightbar')
+
     </div>
 </div>
 

@@ -30,7 +30,7 @@ class HomeController extends Controller
     public function index()
     {
         $tweets = \App\Tweet::orderBy('id', 'DESC')->simplePaginate(2);
-        $users = \App\User::all();
+        $users = \App\User::paginate(6);
         $follows = \App\User::find(Auth::user()->id)->follow;
         return view('home',['tweets'=>$tweets,'users'=>$users, 'follows'=>$follows]);
     }

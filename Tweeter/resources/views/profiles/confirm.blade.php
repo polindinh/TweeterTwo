@@ -3,9 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        @include('layouts.leftbar')
+
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Confirm Delete</div>
+                <div class="card-header"><strong>Confirm Delete</strong></div>
                     <div class="card-body">
                         @include('flashMessage')
                         <h3 class="text-center">Are you sure you want to delete your Profile</h3>
@@ -25,8 +27,8 @@
                     </div>
                 </div>
             </div>
+            @include('layouts.rightbar')
         </div>
-    </div>
 </div>
 
 

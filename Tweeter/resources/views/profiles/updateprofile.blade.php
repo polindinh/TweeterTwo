@@ -3,9 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        @include('layouts.leftbar')
+
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Profile</div>
+                <div class="card-header"><strong>Profile Update</strong></div>
                     <div class="card-body">
                         @include('flashMessage')
                             <div class="card-body">
@@ -78,7 +80,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        @include('layouts.rightbar')
+
     </div>
 </div>
 

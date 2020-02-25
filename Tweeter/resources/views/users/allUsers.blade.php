@@ -3,13 +3,17 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        @include('layouts.leftbar')
+
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header"><h4>All Users</h4></div>
-                    <div class="card-body ">
+                <div class="card-header">
+                    <strong>All Users</strong>
+                </div>
+                    <div class="card-body">
                         <div class="row">
                             @php
-                                function checkFollowing($userToCheck, $allUsers) {
+                                function checkFollowingI($userToCheck, $allUsers) {
                                 foreach ($allUsers as $allUser) {
                                     if($allUser->followed == $userToCheck) {
                                     return true;
@@ -35,7 +39,7 @@
                                                     </span>
                                                     <hr>
                                                     <br>
-                                                    @if (checkFollowing($allUser->id, Auth::user()->follow))
+                                                    @if (checkFollowingI($allUser->id, Auth::user()->follow))
                                                         {{-- <p>Already Following</p> --}}
                                                     <form class="text-center" action="/unfollow/{{$allUser->id}}" method="post">
                                                         @csrf
@@ -63,7 +67,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        @include('layouts.rightbar')
+
     </div>
 </div>
 

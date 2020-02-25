@@ -3,13 +3,15 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        @include('layouts.leftbar')
+
+        <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Profile</div>
+                <div class="card-header"><strong>Profile</strong></div>
                     <div class="card-body">
                         @include('flashMessage')
                         @php
-                            function checkFollowing($userToCheck, $users) {
+                            function checkFollowingI($userToCheck, $users) {
                             foreach ($users as $user) {
                                 if($user->followed == $userToCheck) {
                                 return true;
@@ -67,7 +69,7 @@
                                             <input type="submit" value="Delete Profile"  class="btn btn-bg btn-primary rounded-pill">
                                         </form>
 
-                                        <form action="/deleteUser/{{Auth::user()->id}}" method="POST" style="display:inline-block">
+                                        <form action="/deleteUserConfirm/{{Auth::user()->id}}" method="POST" style="display:inline-block">
                                             @csrf
                                             <input type="hidden" name="id" value={{Auth::user()->id}} class="btn btn-bg btn-primary">
                                             <input type="submit" value="Delete Account"  class="btn btn-bg btn-danger rounded-pill">
@@ -93,7 +95,7 @@
                                                 </div>
                                                  <br>
 
-                                                @if (checkFollowing($users->id, Auth::user()->follow))
+                                                @if (checkFollowingI($users->id, Auth::user()->follow))
                                                 <form action="/unfollow/{{$users->id}}" method="post">
                                                     @csrf
                                                 <input type="hidden" name="user_id" value = "{{$users->id}}">
@@ -180,7 +182,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        @include('layouts.rightbar')
+
     </div>
 </div>
 
