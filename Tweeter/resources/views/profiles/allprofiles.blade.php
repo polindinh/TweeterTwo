@@ -38,7 +38,9 @@
                                             <b>Gender :</b> {{$profiles->gender}} <br>
                                             <b>Date of Birth : </b>{{$profiles->date_of_birth}}<br>
                                             <b>Inspiring Quote : </b>{{$profiles->quote}}<br>
-                                            <b>Member Since :</b> {{$profiles->created_at}}
+                                            {{-- <b>Member Since :</b> {{$profiles->created_at}} --}}
+                                            <b>Member Since :</b> {{date("jS F, Y",strtotime($profiles->created_at))}}
+
 
                                         </div>
                                         <div>
