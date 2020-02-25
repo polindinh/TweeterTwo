@@ -82,15 +82,6 @@
                                 </li>
                             @endif
                         @else
-                            <div class="form-group shadow-textarea">
-
-                                <form action="{{route('search')}}" method="get" class="navbar-nav ml-auto mt-4">
-                                    @csrf
-                                    <input type="text" name="search" class="form-control rounded-pill border border-primary m-1" placeholder="search users...">
-                                    <button class="btn btn-primary rounded-pill m-1 "  type="submit">Go</button>
-
-                                </form>
-                            </div>
 
 
                             <li class="nav-item dropdown mt-4">
@@ -131,7 +122,7 @@
         </nav>
 
 
-        <main class="py-4">
+        <main class="py-1">
             @yield('content')
         </main>
     </div>
