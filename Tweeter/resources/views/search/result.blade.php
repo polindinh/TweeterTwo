@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         @include('layouts.leftbar')
 
-        <div class="col-md-6">
-            <div class="card">
+        <div class="col-md-6 d-flex">
+            <div class="card flex-fill">
                 <div class="card-header"><strong>Search result for:  {{Request::get('search')}}</strong></div>
                     <div class="card-body">
                         <div class="row">

@@ -39,5 +39,14 @@ class UsersController extends Controller
         return view('users.confirm',['user'=>$user]);
 
     }
+    // function showFollowUser(Request $request){
+    //     if(Auth::check()) {
+    //         $users = \App\User::all();
+    //         $follows = \App\Follow::where('user_id', Auth::user()->id)->get();
+    //         return view('users.follows', ['users' => $users, 'follows' => $follows]);
+    //     } else {
+    //         return redirect('/home');
+    //     }
+    // }
 
 }

@@ -1,9 +1,9 @@
-<div class="col-md-3">
-    <div class="card">
+<div class="col-md-3 d-flex">
+    <div class="card flex-fill">
         <div class="card-header">
             <strong>Your Profile</strong>
         </div>
-        <div class="card-body" style="height: 100vh;">
+        <div class="card-body" >
             @php
                 $profileI = \App\User::find(Auth::user()->id)->profile;
                 $followingCount = count(\App\Follow::where('user_id','=', Auth::user()->id)->get());
@@ -19,17 +19,20 @@
                 <b>Member Since :</b> {{date("jS F, Y",strtotime($profileI->created_at))}}
                 <hr>
                 <div>
-                    <h4 class="text-center" style="color:#1DA1F2">Following ({{$followingCount}}) </h4>
-                    <h4 class="text-center" style="color:#1DA1F2">Followers ({{$followersCount}}) </h4>
+                    <h4 class="text-center" >Following ({{$followingCount}}) </h4>
+                    <h4 class="text-center" >Followers ({{$followersCount}}) </h4>
+
+                    {{-- <a href="/follows/{{Auth::user()->id}}"><h4 class="text-center" style="color:#1DA1F2">Following ({{$followingCount}}) </h4></a>
+                    <a href="/follows/{{Auth::user()->id}}"><h4 class="text-center" style="color:#1DA1F2">Followers ({{$followersCount}}) </h4></a> --}}
                 </div>
                 <hr>
                 <br>
                 <ul>
-                    <a href="/home"><h2><i class="fas fa-home"></i> Home</h2></a>
+                    <a href="/home"><h4><i class="fas fa-home"></i> Home</h4></a>
                     <br>
-                    <a href="/profile/{{Auth::user()->id}}"><h2><i class="fas fa-address-card"></i> Your Profile</h2></a>
+                    <a href="/profile/{{Auth::user()->id}}"><h4><i class="fas fa-address-card"></i> Your Profile</h4></a>
                     <br>
-                    <a href="/users"><h2><i class="fas fa-users"></i> All Users</h2></a>
+                    <a href="/users"><h4><i class="fas fa-users"></i> All Users</h4></a>
                 </ul>
 
             @endisset

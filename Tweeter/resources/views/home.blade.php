@@ -4,12 +4,11 @@
 
 
 <div class="container">
-
-    <div class="row justify-content-center">
+    <div class="row justify-content-center  ">
       @include('layouts.leftbar')
 
-        <div class="col-md-6">
-            <div class="card">
+        <div class="col-md-6 d-flex">
+            <div class="card flex-fill">
                 <div class="card-header">
                     <strong>Home</strong>
                 </div>
@@ -55,13 +54,12 @@
                                     $likeCount = count(\App\Tweet::find($tweet->id)->like);
                                     $commentCount = count(\App\Tweet::find($tweet->id)->comment);
                                     $profileImage = \App\User::find($tweet->user_id)->profile;
-                                    // $dislikeCount = count(\App\Tweet::find($tweet->id)->dislike);
                                 @endphp
                                 @if ($tweet-> user_id == Auth::user()->id)
                                 @isset($profileImage)
                                 <img class="img-fluid" src="{{asset('/storage/'.$profileImage->profile_pic)}}" style="border-radius:50%;height:75px;width:75px;" alt="Image">
                                 <br><br>
-                                <a href="/profile/{{$tweet->user->id}}"><p><strong>{{$tweet-> user->name}}</strong></p></a>
+                                <a href="/profile/{{$tweet->user->id}}"><p><strong>{{$tweet->user->name}}</strong></p></a>
                                 <p>{{substr($tweet-> content,0,150)}}</p>
                                     <p class = "time"><i>Posted: {{$tweet-> created_at->diffForHumans()}}</i></p>
                                     <p class = "time"><i>Updated: {{$tweet-> updated_at->diffForHumans()}}</i></p>
@@ -69,7 +67,6 @@
                                     @include('navbarUser')
                                     <br>
                                     @if (checkLike($tweet->id, Auth::user()->like))
-                                            {{-- <p>Already Following</p> --}}
                                         <form action="/unlike/{{$tweet->id}}" method="post">
                                             @csrf
                                         <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
@@ -97,7 +94,6 @@
 
 
                                     @if (checkLike($tweet->id, Auth::user()->like))
-                                            {{-- <p>Already Following</p> --}}
                                         <form action="/unlike/{{$tweet->id}}" method="post">
                                             @csrf
                                         <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
@@ -127,7 +123,6 @@
                                     @include('navbarGuest')
                                     <br>
                                     @if (checkLike($tweet->id, Auth::user()->like))
-                                    {{-- <p>Already Following</p> --}}
                                 <form action="/unlike/{{$tweet->id}}" method="post">
                                     @csrf
                                 <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">

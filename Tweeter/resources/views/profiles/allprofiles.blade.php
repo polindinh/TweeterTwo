@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         @include('layouts.leftbar')
 
-        <div class="col-md-6">
-            <div class="card">
+        <div class="col-md-6 d-flex">
+            <div class="card flex-fill">
                 <div class="card-header"><strong>Profile</strong></div>
                     <div class="card-body">
                         @include('flashMessage')
@@ -31,14 +31,13 @@
                         @isset($profiles)
                                 @if ( Auth::user()->id == $profiles->user_id )
                                         <div>
-                                            <img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/'.$profiles->profile_pic)}}" style="border-radius:50%" alt="Image">
+                                            <img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/'.$profiles->profile_pic)}}"style="border-radius:50%;height:150px;width:150px;" alt="Image">
                                             <br>
                                             <br>
                                             <h2>{{$profiles->name}}</h2>
                                             <b>Gender :</b> {{$profiles->gender}} <br>
                                             <b>Date of Birth : </b>{{$profiles->date_of_birth}}<br>
                                             <b>Inspiring Quote : </b>{{$profiles->quote}}<br>
-                                            {{-- <b>Member Since :</b> {{$profiles->created_at}} --}}
                                             <b>Member Since :</b> {{date("jS F, Y",strtotime($profiles->created_at))}}
 
 
@@ -51,8 +50,8 @@
                                             @endphp
                                             <hr>
                                             <div>
-                                                <span style="color:#1DA1F2">Following ({{$followingCount}}) </span>
-                                                <span style="color:#1DA1F2">Followers ({{$followersCount}}) </span>
+                                                <span>Following ({{$followingCount}}) </span>
+                                                <span>Followers ({{$followersCount}}) </span>
                                             </div>
                                             <br>
 
@@ -78,7 +77,7 @@
                                         </form>
                                     @else
                                         <div>
-                                            <img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/'.$profiles->profile_pic)}}" style="border-radius:50%" alt="Image">
+                                            <img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/'.$profiles->profile_pic)}}" style="border-radius:50%;height:150px;width:150px;" alt="Image">
                                             <br>
                                             <br>
                                             <h2>{{$profiles->name}}</h2>
@@ -92,8 +91,8 @@
                                             @endphp
                                                 <hr>
                                                 <div>
-                                                 <span style="color:#1DA1F2">Following ({{$followingCount}}) </span>
-                                                 <span style="color:#1DA1F2">Followers ({{$followersCount}}) </span>
+                                                 <span>Following ({{$followingCount}}) </span>
+                                                 <span>Followers ({{$followersCount}}) </span>
                                                 </div>
                                                  <br>
 

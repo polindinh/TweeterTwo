@@ -1,5 +1,5 @@
-<div class="col-md-3  " >
-    <div class="card ">
+<div class="col-md-3 d-flex  " >
+    <div class="card flex-fill">
         <div class="card-header">
             <div class="form-group shadow-textarea">
 
@@ -17,7 +17,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-12">
                                         @php
-                                            $users = \App\User::simplePaginate(6);
+                                            $users = \App\User::simplePaginate(4);
 
                                             function checkFollowing($userToCheck, $users) {
                                             foreach ($users as $user) {
