@@ -22,81 +22,87 @@
                                 return false;
                             }
                             @endphp
-                                {{-- @foreach ($tweets as $tweet) --}}
-                                    @if ($tweets-> user_id == Auth::user()->id)
-                                        <a href="/profile/{{$tweets->user->id}}"><p><strong>{{$tweets-> user->name}}</strong></p></a>
 
-                                        {{-- <p><strong>{{$tweets-> user->name}}</strong></p> --}}
+                            @if ($tweets-> user_id == Auth::user()->id)
+                                @php
+                                    $likeCount = count(\App\Tweet::find($tweets->id)->like);
+                                    $profileImage = \App\User::find($tweets->user_id)->profile;
+                                @endphp
+                                <div class="row">
+                                    <div class = "col-md-2">
+                                        @isset($profileImage)
+                                            <a  class = "text-center" href="/profile/{{$tweets->user->id}}"><img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/'.$profileImage->profile_pic)}}" style="border-radius:50%;height:75px;width:75px;" alt="Image"></a><br>
+                                        @endisset
+                                        @empty($profileImage)
+                                            <a  class = "text-center" href="/profile/{{$tweets->user->id}}"><img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/profile_images/noimage.jpg/')}}" style="border-radius:50%;height:75px;width:75px;" alt="Image"></a><br>
+                                        @endempty
+                                        <a  class = "text-center" href="/profile/{{$tweets->user->id}}"><p><strong>{{$tweets->user->name}}</strong></p></a>
+                                    </div>
+                                    <div class = "col-md-10">
                                         <p>{{$tweets-> content}}</p>
-                                        {{-- <p>{{$tweet-> user_id}}</p> --}}
                                         <p class = "time"><i>Posted: {{$tweets-> created_at->diffForHumans()}}</i></p>
                                         <p class = "time"><i>Updated: {{$tweets-> updated_at->diffForHumans()}}</i></p>
-                                        @php
-                                            $likeCount = count(\App\Tweet::find($tweets->id)->like);
-                                            // $dislikeCount = count(\App\Tweet::find($tweets->id)->dislike);
-
-                                        @endphp
                                         @include('navbarsUser')
                                         <br>
-
                                         @if (checkLike($tweets->id, Auth::user()->like))
-                                                {{-- <p>Already Following</p> --}}
                                             <form action="/unlike/{{$tweets->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
                                                 <input class="btn btn-warning rounded-pill" type="submit" value="Unlike">
                                             </form>
-                                            @else
-                                                <form action="/like/{{$tweets->id}}" method="post">
-                                                    @csrf
-                                                    <input class="btn btn-success rounded-pill"type="submit" value="Like">
-                                                    <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
-
-                                                </form>
-                                            @endif
-
-                                    @else
-                                    <a href="/profile/{{$tweets->user->id}}"><p><strong>{{$tweets-> user->name}}</strong></p></a>
-
-                                        {{-- <p><strong>{{$tweets-> user->name}}</strong></p> --}}
+                                        @else
+                                            <form action="/like/{{$tweets->id}}" method="post">
+                                                @csrf
+                                                <input class="btn btn-success rounded-pill"type="submit" value="Like">
+                                                <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
+                                            </form>
+                                        @endif
+                                    </div>
+                                </div>
+                                <hr>
+                            @else
+                                @php
+                                    $likeCount = count(\App\Tweet::find($tweets->id)->like);
+                                    $profileImage = \App\User::find($tweets->user_id)->profile;
+                                @endphp
+                                <div class="row">
+                                    <div class = "col-md-2">
+                                        @isset($profileImage)
+                                        <a  class = "text-center" href="/profile/{{$tweets->user->id}}"><img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/'.$profileImage->profile_pic)}}" style="border-radius:50%;height:75px;width:75px;" alt="Image"></a><br>
+                                        @endisset
+                                        @empty($profileImage)
+                                        <a  class = "text-center" href="/profile/{{$tweets->user->id}}"><img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/profile_images/noimage.jpg/')}}" style="border-radius:50%;height:75px;width:75px;" alt="Image"></a><br>
+                                        @endempty
+                                        <a  class = "text-center" href="/profile/{{$tweets->user->id}}"><p><strong>{{$tweets->user->name}}</strong></p></a>
+                                    </div>
+                                    <div class = "col-md-10">
                                         <p>{{$tweets-> content}}</p>
                                         <p class = "time"><i>Posted: {{$tweets-> created_at->diffForHumans()}}</i></p>
-                                        <p class = "time"><i>Updated: {{$tweets-> updated_at->diffForHumans()}}</i></p>                                        @php
-                                            $likeCount = count(\App\Tweet::find($tweets->id)->like);
-                                            $dislikeCount = count(\App\Tweet::find($tweets->id)->dislike);
-
-                                        @endphp
+                                        <p class = "time"><i>Updated: {{$tweets-> updated_at->diffForHumans()}}</i></p>
                                         @include('navbarsGuest')
                                         <br>
-
                                         @if (checkLike($tweets->id, Auth::user()->like))
-                                                {{-- <p>Already Following</p> --}}
                                             <form action="/unlike/{{$tweets->id}}" method="post">
                                                 @csrf
                                             <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
                                                 <input class="btn btn-warning rounded-pill" type="submit" value="Unlike">
                                             </form>
-                                            @else
-                                                <form action="/like/{{$tweets->id}}" method="post">
-                                                    @csrf
-                                                    <input class="btn btn-success rounded-pill"type="submit" value="Like">
-                                                    <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
-
-                                                </form>
-                                            @endif
-                                        <hr>
-
-                                    @endif
-                                {{-- @endforeach --}}
-
-
+                                        @else
+                                            <form action="/like/{{$tweets->id}}" method="post">
+                                                @csrf
+                                                <input class="btn btn-success rounded-pill"type="submit" value="Like">
+                                                <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
+                                            </form>
+                                        @endif
+                                    </div>
+                                </div>
+                                <hr>
+                            @endif
                         </div>
-
                     </div>
                 </div>
             </div>
         @include('layouts.rightbar')
-
     </div>
 </div>
 @endsection

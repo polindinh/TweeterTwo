@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Auth;
 use Illuminate\Support\Facades\Redirect;
+use \App\Follow;
 
 
 class UsersController extends Controller
@@ -39,14 +40,19 @@ class UsersController extends Controller
         return view('users.confirm',['user'=>$user]);
 
     }
-    // function showFollowUser(Request $request){
-    //     if(Auth::check()) {
-    //         $users = \App\User::all();
-    //         $follows = \App\Follow::where('user_id', Auth::user()->id)->get();
-    //         return view('users.follows', ['users' => $users, 'follows' => $follows]);
-    //     } else {
-    //         return redirect('/home');
-    //     }
-    // }
+
+    public function showFollowUser(Request $request){
+        if(Auth::check()){
+            // $followingUsers = \App\User::whereIn('id', \App\Follow::select('followed')->where('user_id', Auth::user()->id)->get())->get();
+            // $followers = \App\User::whereIn('id', \App\Follow::select('user_id')->where('followed', Auth::user()->id)->get())->get();
+            $followingUsers = \App\User::whereIn('id', \App\Follow::select('followed')->where('user_id', $request->id)->get())->get();
+            $followers = \App\User::whereIn('id', \App\Follow::select('user_id')->where('followed', $request->id)->get())->get();
+            return view('users.follows', compact('followingUsers','followers'));
+        }else{
+            return redirect('/home');
+        }
+   }
+
+
 
 }

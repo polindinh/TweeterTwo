@@ -29,4 +29,6 @@ class FollowsController extends Controller
                     ->delete();
         return back();
     }
+
+
 }

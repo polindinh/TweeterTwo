@@ -52,7 +52,7 @@ Route::post('/unfollow/{id}','FollowsController@unfollow')->name('unfollow')->mi
 Route::post('/deleteUserConfirm/{id}','UsersController@deleteUserConfirm')->middleware('auth');
 Route::post('/deleteUser/{id}','UsersController@deleteUser')->middleware('auth');
 
-// Route::get('/follows/{id}','UsersController@showFollowUser')->middleware('auth');
+Route::get('/follows/{id}','UsersController@showFollowUser')->middleware('auth');
 
 
 

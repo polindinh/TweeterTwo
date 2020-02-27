@@ -1,4 +1,4 @@
-<div class="col-md-3 d-flex">
+<div class="col-md-3 d-flex ">
     <div class="card flex-fill">
         <div class="card-header">
             <strong>Your Profile</strong>
@@ -10,7 +10,7 @@
                 $followersCount = count(\App\Follow::where('followed','=', Auth::user()->id)->get());
             @endphp
             @isset($profileI)
-                <img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/'.$profileI->profile_pic)}}" style="border-radius:50%;height:75px;width:75px;" alt="Image">
+                <a href="/profile/{{Auth::user()->id}}"><img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/'.$profileI->profile_pic)}}" style="border-radius:50%;height:75px;width:75px;" alt="Image"></a>
                 <br>
                 <a href="/profile/{{Auth::user()->id}}"><h2 class = "text-center">{{Auth::user()->name}}</h2></a>
                 <b>Gender :</b> {{$profileI->gender}} <br>
@@ -19,11 +19,11 @@
                 <b>Member Since :</b> {{date("jS F, Y",strtotime($profileI->created_at))}}
                 <hr>
                 <div>
-                    <h4 class="text-center" >Following ({{$followingCount}}) </h4>
-                    <h4 class="text-center" >Followers ({{$followersCount}}) </h4>
+                    {{-- <h4 class="text-center" >Following ({{$followingCount}}) </h4>
+                    <h4 class="text-center" >Followers ({{$followersCount}}) </h4> --}}
 
-                    {{-- <a href="/follows/{{Auth::user()->id}}"><h4 class="text-center" style="color:#1DA1F2">Following ({{$followingCount}}) </h4></a>
-                    <a href="/follows/{{Auth::user()->id}}"><h4 class="text-center" style="color:#1DA1F2">Followers ({{$followersCount}}) </h4></a> --}}
+                    <a href="/follows/{{Auth::user()->id}}"><h4 class="text-center" style="color:#1DA1F2">Following ({{$followingCount}}) </h4></a>
+                    <a href="/follows/{{Auth::user()->id}}"><h4 class="text-center" style="color:#1DA1F2">Followers ({{$followersCount}}) </h4></a>
                 </div>
                 <hr>
                 <br>

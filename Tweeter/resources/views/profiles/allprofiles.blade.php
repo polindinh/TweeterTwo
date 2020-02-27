@@ -50,8 +50,8 @@
                                             @endphp
                                             <hr>
                                             <div>
-                                                <span>Following ({{$followingCount}}) </span>
-                                                <span>Followers ({{$followersCount}}) </span>
+                                                <a href="/follows/{{Auth::user()->id}}"><h4 class="text-center" style="color:#1DA1F2; display:inline-block;margin-right:10px;">Following ({{$followingCount}}) </h4></a>
+                                                <a href="/follows/{{Auth::user()->id}}"><h4 class="text-center" style="color:#1DA1F2;display:inline-block;">Followers ({{$followersCount}}) </h4></a>
                                             </div>
                                             <br>
 
@@ -81,8 +81,8 @@
                                             <br>
                                             <br>
                                             <h2>{{$profiles->name}}</h2>
-                                            <b>Gender :</b> {{$profiles->gender}} <br>
-                                            <b>Date of Birth : </b>{{$profiles->date_of_birth}}<br>
+                                            {{-- <b>Gender :</b> {{$profiles->gender}} <br> --}}
+                                            {{-- <b>Date of Birth : </b>{{$profiles->date_of_birth}}<br> --}}
                                             <b>Inspiring Quote : </b>{{$profiles->quote}}<br>
                                             <b>Member Since :</b> {{date("jS F, Y",strtotime($profiles->created_at))}}
                                             @php
@@ -91,8 +91,10 @@
                                             @endphp
                                                 <hr>
                                                 <div>
-                                                 <span>Following ({{$followingCount}}) </span>
-                                                 <span>Followers ({{$followersCount}}) </span>
+                                                    <span>Following ({{$followingCount}}) </span>
+                                                    <span>Followers ({{$followersCount}}) </span>
+                                                    {{-- <a href="/follows/{{Auth::user()->id}}"><h4 class="text-center" style="color:#1DA1F2; display:inline-block;margin-right:10px;">Following ({{$followingCount}}) </h4></a>
+                                                    <a href="/follows/{{Auth::user()->id}}"><h4 class="text-center" style="color:#1DA1F2;display:inline-block;">Followers ({{$followersCount}}) </h4></a> --}}
                                                 </div>
                                                  <br>
 

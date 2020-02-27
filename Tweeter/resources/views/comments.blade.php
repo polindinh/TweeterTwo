@@ -21,10 +21,17 @@
                         }
                         @endphp
                         <div>
-                            {{-- @foreach ($tweets as $tweet) --}}
-                            <a href="/profile/{{$tweets->user->id}}"><p><strong>{{$tweets-> user->name}}</strong></p></a>
-
-                            {{-- <strong><p>{{$tweets-> user ->name}}</p></strong> --}}
+                            @php
+                                $likeCount = count(\App\Tweet::find($tweets->id)->like);
+                                $profileImage = \App\User::find($tweets->user_id)->profile;
+                            @endphp
+                            @isset($profileImage)
+                                <a  class = "text-center" href="/profile/{{$tweets->user->id}}"><img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/'.$profileImage->profile_pic)}}" style="border-radius:50%;height:75px;width:75px;" alt="Image"></a><br>
+                            @endisset
+                            @empty($profileImage)
+                                <a  class = "text-center" href="/profile/{{$tweets->user->id}}"><img class="img-fluid rounded mx-auto d-block" src="{{asset('/storage/profile_images/noimage.jpg/')}}" style="border-radius:50%;height:75px;width:75px;" alt="Image"></a><br>
+                            @endempty
+                            <a class = "text-center" href="/profile/{{$tweets->user->id}}"><p><strong>{{$tweets-> user->name}}</strong></p></a>
                             <p>{{$tweets-> content}}</p>
                             <div class="form-group shadow-textarea">
                                 <form action="/commentPost/{{$tweets->id}}" method="post">
@@ -48,14 +55,12 @@
                             @if ($tweets-> user_id == Auth::user()->id)
                                 @php
                                     $likeCount = count(\App\Tweet::find($tweets->id)->like);
-                                    $dislikeCount = count(\App\Tweet::find($tweets->id)->dislike);
 
                                 @endphp
                                 @include('navbarsUser')
                                 <br>
 
                                 @if (checkLike($tweets->id, Auth::user()->like))
-                                {{-- <p>Already Following</p> --}}
                             <form action="/unlike/{{$tweets->id}}" method="post">
                                 @csrf
                             <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
@@ -72,14 +77,12 @@
                             @else
                                 @php
                                     $likeCount = count(\App\Tweet::find($tweets->id)->like);
-                                    $dislikeCount = count(\App\Tweet::find($tweets->id)->dislike);
 
                                  @endphp
                                 @include('navbarsGuest')
                                 <br>
 
                                 @if (checkLike($tweets->id, Auth::user()->like))
-                                {{-- <p>Already Following</p> --}}
                             <form action="/unlike/{{$tweets->id}}" method="post">
                                 @csrf
                             <input type="hidden" name="user_id" value = "{{$tweets->user_id}}">
@@ -97,23 +100,16 @@
                             @endif
                             <hr>
                             <hr>
-                            <h1>Comments Section</h1>
+                            <h3>Comments Section</h3>
                             <hr>
                                 <hr>
 
-                            {{-- @endforeach --}}
                             @if (count($comments)>0)
                                 @foreach ($comments as $comment)
                                     @if ($comment-> user_id == Auth::user()->id)
                                         <a href="/profile/{{$comment->user->id}}"><p><strong>{{$comment-> user->name}}</strong></p></a>
-
-                                        {{-- <p><strong>{{$comment-> user->name}}</strong></p> --}}
                                         <p>{{$comment-> content}}</p>
-                                        {{-- <p>{{$comment-> id}}</p> --}}
-
                                         <p><i>Commented on: {{$comment-> created_at}}</i></p>
-                                        {{-- <p><i>Updated on: {{$comment-> updated_at}}</i></p> --}}
-
                                         @include('navbarCommentUser')
                                         <br>
                                         <hr>
@@ -121,8 +117,6 @@
                                         <a href="/profile/{{$comment->user->id}}"><p><strong>{{$comment-> user->name}}</strong></p></a>
                                         <p>{{$comment-> content}}</p>
                                         <p><i>Commented on: {{$comment-> created_at}}</i></p>
-                                        {{-- <p><i>Updated on: {{$comment-> updated_at}}</i></p> --}}
-
                                         @include('navbarCommentGuest')
                                         <hr>
                                     @endif

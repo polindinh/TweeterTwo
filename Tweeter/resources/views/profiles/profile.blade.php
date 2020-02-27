@@ -42,8 +42,10 @@
                                     @endphp
                                     <hr>
                                     <div>
-                                        <span>Following ({{$followingCount}}) </span>
-                                        <span>Followers ({{$followersCount}}) </span>
+                                        <a href="/follows/{{Auth::user()->id}}"><h4 class="text-center" style="color:#1DA1F2; display:inline-block;margin-right:10px;">Following ({{$followingCount}}) </h4></a>
+                                        <a href="/follows/{{Auth::user()->id}}"><h4 class="text-center" style="color:#1DA1F2;display:inline-block;">Followers ({{$followersCount}}) </h4></a>
+                                        {{-- <span>Following ({{$followingCount}}) </span>
+                                        <span>Followers ({{$followersCount}}) </span> --}}
                                     </div>
                                     <br>
 
