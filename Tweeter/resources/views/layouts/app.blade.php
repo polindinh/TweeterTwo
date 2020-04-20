@@ -15,7 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}">
+    {{-- <link type="text/css" rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
 
 
 
@@ -75,11 +75,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link " href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link btn btn-primary rounded-pill" href="{{ route('login') }}" style="background-color:#3490DC;color:white;margin-right:10px;">{{ __('Login') }} </a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link btn btn-primary rounded-pill" href="{{ route('register') }}" style="background-color:#3490DC;color:white;">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -127,5 +127,9 @@
             @yield('content')
         </main>
     </div>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="{{ asset('js/app.js') }}" ></script>
+
+
 </body>
 </html>
