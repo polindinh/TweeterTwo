@@ -64,8 +64,7 @@ new ScrollMagic.Scene({
 
 <style scoped>
     .marketing {
-        background-color:whitesmoke;
-        /* background: linear-gradient(to top, #99ccff 0%, #3366ff 100%); */
+        background-color:#DDEFFD;
         display:grid;
         grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
         color: #636b6f;
@@ -82,7 +81,6 @@ new ScrollMagic.Scene({
     .bullet {
         display:grid;
         grid-template-columns: 1fr 1fr;
-        /* justify-items: center; */
         align-self: center;
         padding: 50px 0 50px 0;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -90,10 +88,7 @@ new ScrollMagic.Scene({
     }
 
     .one{
-        /* background-color:#E0DFD5; */
         background-color:#F4EBE8;
-
-        
     }
     .two{
         background-color:#EFCFE3;
