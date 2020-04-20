@@ -11,21 +11,29 @@ use \App\Like;
 class LikesController extends Controller
 {
     public function like($id){
-        // return $id;
-        $loggedInUser = Auth::user()->id;
-        $likeUser = \App\Like::where(['user_id'=>$loggedInUser,'tweet_id'=> $id ]);
-        if(empty($likeUser ->user_id )){
-            $user_id = Auth::user()->id;
-            $tweet_id = $id;
+        if(Auth::check()){
             $like = new \App\Like;
-            $like->user_id = $user_id;
-            $like->tweet_id = $tweet_id;
+            $like->user_id = Auth::user()->id;
+            $like->tweet_id = $id;
             $like->save();
             return back();
-        }else{
-            return Redirect::back();
 
         }
+        // return $id;
+        // $loggedInUser = Auth::user()->id;
+        // $likeUser = \App\Like::where(['user_id'=>$loggedInUser,'tweet_id'=> $id ]);
+        // if(empty($likeUser ->user_id )){
+        //     $user_id = Auth::user()->id;
+        //     $tweet_id = $id;
+        //     $like = new \App\Like;
+        //     $like->user_id = $user_id;
+        //     $like->tweet_id = $tweet_id;
+        //     $like->save();
+        //     return back();
+        // }else{
+        //     return Redirect::back();
+
+
     }
 
     public function unlike($id){

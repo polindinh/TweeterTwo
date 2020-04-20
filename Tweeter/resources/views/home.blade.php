@@ -77,9 +77,10 @@
                                                     </form>
                                                     <br><br>
                                                 @else
+                                                    <LikeButton/>
                                                     <form action="/like/{{$tweet->id}}" method="post">
                                                         @csrf
-                                                        <input class="btn btn-success rounded-pill float-right"type="submit" value="Like" style="margin-right:10px;">
+                                                        <input class="btn btn-success rounded-pill float-right like"type="submit" value="Like" style="margin-right:10px;">
                                                         <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
                                                     </form>
                                                     <br><br>
@@ -104,6 +105,7 @@
                                                 <p class = "time"><i>Updated: {{$tweet-> updated_at->diffForHumans()}}</i></p>
                                                 @include('navbarGuest')
                                                 @if (checkLike($tweet->id, Auth::user()->like))
+
                                                     <form action="/unlike/{{$tweet->id}}" method="post">
                                                         @csrf
                                                         <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
@@ -111,9 +113,10 @@
                                                     </form>
                                                     <br><br>
                                                 @else
+                                                    <LikeButton/>
                                                     <form action="/like/{{$tweet->id}}" method="post">
                                                         @csrf
-                                                        <input class="btn btn-success rounded-pill float-right"type="submit" value="Like" style="margin-right:10px;">
+                                                        <input class="btn btn-success rounded-pill float-right like "type="submit" value="Like" style="margin-right:10px;" @click>
                                                         <input type="hidden" name="user_id" value = "{{$tweet->user_id}}">
                                                     </form>
                                                 <br><br>
@@ -138,9 +141,3 @@
     </div>
 </div>
 @endsection
-
-
-
-
-
-

@@ -1,4 +1,4 @@
-<div class="col-md-3 d-flex ">
+<div class="col-md-3 d-flex">
     <div class="card flex-fill">
         <div class="card-header">
             <strong>Your Profile</strong>

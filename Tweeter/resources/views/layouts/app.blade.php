@@ -10,7 +10,7 @@
     <title>Tweeter</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -75,11 +75,11 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link btn btn-primary rounded-pill" href="{{ route('login') }}" style="background-color:#3490DC;color:white;margin-right:10px;">{{ __('Login') }} </a>
+                                <a class="nav-link btn btn-primary rounded-pill" href="{{ route('login') }}" style="background-color:#3490DC;color:white;margin-right:10px;margin-top:5px;">{{ __('Login') }} </a>
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link btn btn-primary rounded-pill" href="{{ route('register') }}" style="background-color:#3490DC;color:white;">{{ __('Register') }}</a>
+                                    <a class="nav-link btn btn-primary rounded-pill" href="{{ route('register') }}" style="background-color:#3490DC;color:white;margin-top:5px;">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
@@ -123,6 +123,10 @@
         </main>
     </div>
     <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    {{-- <script src="{{ asset('js/like.js') }}"></script> --}}
+
+
 
 
 </body>
