@@ -38,6 +38,7 @@
                                     @php
                                         $followingCount = count(\App\Follow::where('user_id','=', $profile->user_id)->get());
                                         $followersCount = count(\App\Follow::where('followed','=', $profile->user_id)->get());
+                                        $tweetlinks = \App\Tweet::orderBy('id', 'DESC')->simplePaginate(3);
 
                                     @endphp
                                     <hr>
@@ -203,6 +204,9 @@
                             @endif
 
 
+                    </div>
+                    <div class="text-center">
+                        {{ $tweetlinks->links()}}
                     </div>
                 </div>
             </div>

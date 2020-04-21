@@ -46,6 +46,8 @@
                                             @php
                                                 $followingCount = count(\App\Follow::where('user_id','=', $profiles->user_id)->get());
                                                 $followersCount = count(\App\Follow::where('followed','=', $profiles->user_id)->get());
+                                                $tweetlinks = \App\Tweet::orderBy('id', 'DESC')->simplePaginate(3);
+
 
                                             @endphp
                                             <hr>
@@ -182,6 +184,10 @@
                             @else
                                 <p>No tweet found!</p>
                             @endif
+
+                            <div class="text-center">
+                                {{ $tweetlinks->links()}}
+                            </div>
                     </div>
                 </div>
             </div>
