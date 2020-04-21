@@ -77,7 +77,6 @@
                                                     </form>
                                                     <br><br>
                                                 @else
-                                                    <LikeButton/>
                                                     <form action="/like/{{$tweet->id}}" method="post">
                                                         @csrf
                                                         <input class="btn btn-success rounded-pill float-right like"type="submit" value="Like" style="margin-right:10px;">
@@ -113,7 +112,6 @@
                                                     </form>
                                                     <br><br>
                                                 @else
-                                                    <LikeButton/>
                                                     <form action="/like/{{$tweet->id}}" method="post">
                                                         @csrf
                                                         <input class="btn btn-success rounded-pill float-right like "type="submit" value="Like" style="margin-right:10px;" @click>

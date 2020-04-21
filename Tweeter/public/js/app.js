@@ -1899,47 +1899,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LikeButton.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LikeButton.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  name: "LikeButton",
-  props: {
-    tweetId: ""
-  },
-  methods: {
-    like: function like() {
-      var _this = this;
-
-      axios.post('/like/{id}', {
-        tweetId: this.tweetId
-      }).then(function (response) {
-        _this.$root.$emit('tweetLiked', _this.tweetId);
-
-        console.log("liked");
-      });
-    }
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Root.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Root.vue?vue&type=script&lang=js& ***!
@@ -6572,7 +6531,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.marketing[data-v-cca49266] {\n        background-color:#DDEFFD;\n        /* display:grid;\n        grid-template-rows: 1fr 1fr 1fr 1fr 1fr; */\n        color: #636b6f;\n        font-family: 'Nunito', sans-serif;\n        font-weight: 200;\n        height: 100vh;\n        margin: auto;\n        width :100%;\n        height: auto;\n        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);\n        padding-bottom: 10px;\n}\n.bullet[data-v-cca49266] {\n        display:grid;\n        grid-template-columns: 1fr 1fr;\n        align-self: center;\n        padding: 30px 0 30px 0;\n        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n        border-radius: 20px;\n        margin:40px 0 40px 0;\n}\n.one[data-v-cca49266]{\n        background-color:#F4EBE8;\n}\n.two[data-v-cca49266]{\n        background-color:#EFCFE3;\n}\n.three[data-v-cca49266]{\n        background-color:#B3DEE2;\n}\n.four[data-v-cca49266]{\n        background-color:#E0DFD5;\n}\nh1[data-v-cca49266], h4[data-v-cca49266] {\n        text-align: center;\n        font-size: 2rem;\n        color:#F06543;\n        padding:30px 0 30px 0;\n        font-weight: bolder;\n}\np[data-v-cca49266] {\n        /* text-align: center; */\n        padding:20px;\n        font-size: 1rem;\n}\nimg[data-v-cca49266] {\n        width:100%;\n        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);\n}\n.photo[data-v-cca49266] {\n        display:block;\n        width: 65%;\n        height: auto;\n        border-radius:15px;\n        margin-left: auto;\n        margin-right: auto;\n        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n}\n.animate[data-v-cca49266]{\n        -webkit-transform: translate(10px,75px);\n                transform: translate(10px,75px);\n        -webkit-transition: all 1.3s ease-in;\n        transition: all 1.3s ease-in;\n        opacity: 0;\n}\n.fade[data-v-cca49266]{\n        -webkit-transform: translate(0,0);\n                transform: translate(0,0);\n        opacity: 1;\n}\n#main-banner[data-v-cca49266]:hover {\n        -webkit-animation: shake-data-v-cca49266 1.5s;\n                animation: shake-data-v-cca49266 1.5s;\n        -webkit-animation-iteration-count: infinite;\n                animation-iteration-count: infinite;\n}\n@-webkit-keyframes shake-data-v-cca49266 {\n0% { -webkit-transform: translate(1px, 1px) rotate(0deg); transform: translate(1px, 1px) rotate(0deg);\n}\n10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); transform: translate(-1px, -2px) rotate(-1deg);\n}\n20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); transform: translate(-3px, 0px) rotate(1deg);\n}\n30% { -webkit-transform: translate(3px, 2px) rotate(0deg); transform: translate(3px, 2px) rotate(0deg);\n}\n40% { -webkit-transform: translate(1px, -1px) rotate(1deg); transform: translate(1px, -1px) rotate(1deg);\n}\n50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); transform: translate(-1px, 2px) rotate(-1deg);\n}\n60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); transform: translate(-3px, 1px) rotate(0deg);\n}\n70% { -webkit-transform: translate(3px, 1px) rotate(-1deg); transform: translate(3px, 1px) rotate(-1deg);\n}\n80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); transform: translate(-1px, -1px) rotate(1deg);\n}\n90% { -webkit-transform: translate(1px, 2px) rotate(0deg); transform: translate(1px, 2px) rotate(0deg);\n}\n100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); transform: translate(1px, -2px) rotate(-1deg);\n}\n}\n@keyframes shake-data-v-cca49266 {\n0% { -webkit-transform: translate(1px, 1px) rotate(0deg); transform: translate(1px, 1px) rotate(0deg);\n}\n10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); transform: translate(-1px, -2px) rotate(-1deg);\n}\n20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); transform: translate(-3px, 0px) rotate(1deg);\n}\n30% { -webkit-transform: translate(3px, 2px) rotate(0deg); transform: translate(3px, 2px) rotate(0deg);\n}\n40% { -webkit-transform: translate(1px, -1px) rotate(1deg); transform: translate(1px, -1px) rotate(1deg);\n}\n50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); transform: translate(-1px, 2px) rotate(-1deg);\n}\n60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); transform: translate(-3px, 1px) rotate(0deg);\n}\n70% { -webkit-transform: translate(3px, 1px) rotate(-1deg); transform: translate(3px, 1px) rotate(-1deg);\n}\n80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); transform: translate(-1px, -1px) rotate(1deg);\n}\n90% { -webkit-transform: translate(1px, 2px) rotate(0deg); transform: translate(1px, 2px) rotate(0deg);\n}\n100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); transform: translate(1px, -2px) rotate(-1deg);\n}\n}\n.cp-text[data-v-cca49266]{ \n        color: rgba(0,0,0,.7); \n        text-shadow: 0 1px rgba(255, 255, 255, 0.1);\n        text-align: center;\n}\na[data-v-cca49266] {\n  color: #F06543;\n  text-decoration: none;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  font-size: 2rem;\n  padding:0 20px 0 20px;\n}\na[data-v-cca49266]:after {    \n  background: none repeat scroll 0 0 transparent;\n  bottom: 0;\n  content: \"\";\n  display: block;\n  height: 2px;\n  left: 50%;\n  position: absolute;\n  background: #F06543;\n  -webkit-transition: width 0.3s ease 0s, left 0.3s ease 0s;\n  transition: width 0.3s ease 0s, left 0.3s ease 0s;\n  width: 0;\n}\na[data-v-cca49266]:hover:after { \n  width: 100%; \n  left: 0;\n}\n", ""]);
+exports.push([module.i, "\n.marketing[data-v-cca49266] {\n        background-color:#DDEFFD;\n        /* display:grid;\n        grid-template-rows: 1fr 1fr 1fr 1fr 1fr; */\n        color: #636b6f;\n        font-family: 'Nunito', sans-serif;\n        font-weight: 200;\n        height: 100vh;\n        margin: auto;\n        width :100%;\n        height: auto;\n        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);\n        padding-bottom: 10px;\n}\n.bullet[data-v-cca49266] {\n        display:grid;\n        grid-template-columns: 1fr 1fr;\n        align-self: center;\n        padding: 30px 0 30px 0;\n        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n        border-radius: 20px;\n        margin:40px 0 40px 0;\n}\n.one[data-v-cca49266]{\n        background-color:#F4EBE8;\n}\n.two[data-v-cca49266]{\n        background-color:#EFCFE3;\n}\n.three[data-v-cca49266]{\n        background-color:#B3DEE2;\n}\n.four[data-v-cca49266]{\n        background-color:#E0DFD5;\n}\nh1[data-v-cca49266], h4[data-v-cca49266] {\n        text-align: center;\n        font-size: 2rem;\n        color:#F06543;\n        padding:30px 0 30px 0;\n        font-weight: bolder;\n}\np[data-v-cca49266] {\n        /* text-align: center; */\n        padding:20px;\n        font-size: 1rem;\n}\nimg[data-v-cca49266] {\n        width:100%;\n        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.40);\n}\n.photo[data-v-cca49266] {\n        display:block;\n        width: 65%;\n        height: auto;\n        border-radius:15px;\n        margin-left: auto;\n        margin-right: auto;\n        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);\n}\n.animate[data-v-cca49266]{\n        -webkit-transform: translate(10px,75px);\n                transform: translate(10px,75px);\n        -webkit-transition: all 1.3s ease-in;\n        transition: all 1.3s ease-in;\n        opacity: 0;\n}\n.fade[data-v-cca49266]{\n        -webkit-transform: translate(0,0);\n                transform: translate(0,0);\n        opacity: 1;\n}\n#main-banner[data-v-cca49266]:hover {\n        -webkit-animation: shake-data-v-cca49266 1.5s;\n                animation: shake-data-v-cca49266 1.5s;\n        -webkit-animation-iteration-count: infinite;\n                animation-iteration-count: infinite;\n}\n@-webkit-keyframes shake-data-v-cca49266 {\n0% { -webkit-transform: translate(1px, 1px) rotate(0deg); transform: translate(1px, 1px) rotate(0deg);\n}\n10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); transform: translate(-1px, -2px) rotate(-1deg);\n}\n20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); transform: translate(-3px, 0px) rotate(1deg);\n}\n30% { -webkit-transform: translate(3px, 2px) rotate(0deg); transform: translate(3px, 2px) rotate(0deg);\n}\n40% { -webkit-transform: translate(1px, -1px) rotate(1deg); transform: translate(1px, -1px) rotate(1deg);\n}\n50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); transform: translate(-1px, 2px) rotate(-1deg);\n}\n60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); transform: translate(-3px, 1px) rotate(0deg);\n}\n70% { -webkit-transform: translate(3px, 1px) rotate(-1deg); transform: translate(3px, 1px) rotate(-1deg);\n}\n80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); transform: translate(-1px, -1px) rotate(1deg);\n}\n90% { -webkit-transform: translate(1px, 2px) rotate(0deg); transform: translate(1px, 2px) rotate(0deg);\n}\n100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); transform: translate(1px, -2px) rotate(-1deg);\n}\n}\n@keyframes shake-data-v-cca49266 {\n0% { -webkit-transform: translate(1px, 1px) rotate(0deg); transform: translate(1px, 1px) rotate(0deg);\n}\n10% { -webkit-transform: translate(-1px, -2px) rotate(-1deg); transform: translate(-1px, -2px) rotate(-1deg);\n}\n20% { -webkit-transform: translate(-3px, 0px) rotate(1deg); transform: translate(-3px, 0px) rotate(1deg);\n}\n30% { -webkit-transform: translate(3px, 2px) rotate(0deg); transform: translate(3px, 2px) rotate(0deg);\n}\n40% { -webkit-transform: translate(1px, -1px) rotate(1deg); transform: translate(1px, -1px) rotate(1deg);\n}\n50% { -webkit-transform: translate(-1px, 2px) rotate(-1deg); transform: translate(-1px, 2px) rotate(-1deg);\n}\n60% { -webkit-transform: translate(-3px, 1px) rotate(0deg); transform: translate(-3px, 1px) rotate(0deg);\n}\n70% { -webkit-transform: translate(3px, 1px) rotate(-1deg); transform: translate(3px, 1px) rotate(-1deg);\n}\n80% { -webkit-transform: translate(-1px, -1px) rotate(1deg); transform: translate(-1px, -1px) rotate(1deg);\n}\n90% { -webkit-transform: translate(1px, 2px) rotate(0deg); transform: translate(1px, 2px) rotate(0deg);\n}\n100% { -webkit-transform: translate(1px, -2px) rotate(-1deg); transform: translate(1px, -2px) rotate(-1deg);\n}\n}\n.cp-text[data-v-cca49266]{\n        color: rgba(0,0,0,.7);\n        text-shadow: 0 1px rgba(255, 255, 255, 0.1);\n        text-align: center;\n}\na[data-v-cca49266] {\n  color: #F06543;\n  text-decoration: none;\n  display: inline-block;\n  position: relative;\n  text-align: center;\n  font-size: 2rem;\n  padding:0 20px 0 20px;\n}\na[data-v-cca49266]:after {\n  background: none repeat scroll 0 0 transparent;\n  bottom: 0;\n  content: \"\";\n  display: block;\n  height: 2px;\n  left: 50%;\n  position: absolute;\n  background: #F06543;\n  -webkit-transition: width 0.3s ease 0s, left 0.3s ease 0s;\n  transition: width 0.3s ease 0s, left 0.3s ease 0s;\n  width: 0;\n}\na[data-v-cca49266]:hover:after {\n  width: 100%;\n  left: 0;\n}\n", ""]);
 
 // exports
 
@@ -38029,43 +37988,6 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LikeButton.vue?vue&type=template&id=2a9c25d4&scoped=true&":
-/*!*************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LikeButton.vue?vue&type=template&id=2a9c25d4&scoped=true& ***!
-  \*************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("a", { on: { click: _vm.like } }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("span", [_vm._v("Like")])
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("span", [_c("i", { staticClass: "fas fa-thumbs-up" })])
-  }
-]
-render._withStripped = true
-
-
-
-/***/ }),
-
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Root.vue?vue&type=template&id=cca49266&scoped=true&":
 /*!*******************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Root.vue?vue&type=template&id=cca49266&scoped=true& ***!
@@ -50400,8 +50322,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('Root', __webpack_require__(/*! ./components/Root.vue */ "./resources/js/components/Root.vue")["default"]);
-Vue.component('LikeButton', __webpack_require__(/*! ./components/LikeButton.vue */ "./resources/js/components/LikeButton.vue")["default"]);
+Vue.component('Root', __webpack_require__(/*! ./components/Root.vue */ "./resources/js/components/Root.vue")["default"]); // Vue.component('LikeButton', require('./components/LikeButton.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -50409,10 +50331,7 @@ Vue.component('LikeButton', __webpack_require__(/*! ./components/LikeButton.vue 
  */
 
 var app = new Vue({
-  el: '#app',
-  components: {
-    LikeButton: LikeButton
-  }
+  el: '#app'
 });
 
 /***/ }),
@@ -50459,75 +50378,6 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
-
-/***/ }),
-
-/***/ "./resources/js/components/LikeButton.vue":
-/*!************************************************!*\
-  !*** ./resources/js/components/LikeButton.vue ***!
-  \************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LikeButton_vue_vue_type_template_id_2a9c25d4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LikeButton.vue?vue&type=template&id=2a9c25d4&scoped=true& */ "./resources/js/components/LikeButton.vue?vue&type=template&id=2a9c25d4&scoped=true&");
-/* harmony import */ var _LikeButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LikeButton.vue?vue&type=script&lang=js& */ "./resources/js/components/LikeButton.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _LikeButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _LikeButton_vue_vue_type_template_id_2a9c25d4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _LikeButton_vue_vue_type_template_id_2a9c25d4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "2a9c25d4",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/LikeButton.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/LikeButton.vue?vue&type=script&lang=js&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/components/LikeButton.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LikeButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./LikeButton.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LikeButton.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LikeButton_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/LikeButton.vue?vue&type=template&id=2a9c25d4&scoped=true&":
-/*!*******************************************************************************************!*\
-  !*** ./resources/js/components/LikeButton.vue?vue&type=template&id=2a9c25d4&scoped=true& ***!
-  \*******************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LikeButton_vue_vue_type_template_id_2a9c25d4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LikeButton.vue?vue&type=template&id=2a9c25d4&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LikeButton.vue?vue&type=template&id=2a9c25d4&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LikeButton_vue_vue_type_template_id_2a9c25d4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LikeButton_vue_vue_type_template_id_2a9c25d4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
 
 /***/ }),
 

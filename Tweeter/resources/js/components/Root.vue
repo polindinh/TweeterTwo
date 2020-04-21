@@ -182,8 +182,8 @@ $(document).ready(function(){
         90% { transform: translate(1px, 2px) rotate(0deg); }
         100% { transform: translate(1px, -2px) rotate(-1deg); }
     }
-    .cp-text{ 
-        color: rgba(0,0,0,.7); 
+    .cp-text{
+        color: rgba(0,0,0,.7);
         text-shadow: 0 1px rgba(255, 255, 255, 0.1);
         text-align: center;
 
@@ -197,7 +197,7 @@ a {
   font-size: 2rem;
   padding:0 20px 0 20px;
 }
-a:after {    
+a:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
   content: "";
@@ -209,9 +209,9 @@ a:after {
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
-a:hover:after { 
-  width: 100%; 
-  left: 0; 
+a:hover:after {
+  width: 100%;
+  left: 0;
 }
 </style>
 
